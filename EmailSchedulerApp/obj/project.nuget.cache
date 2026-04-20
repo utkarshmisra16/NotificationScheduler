@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "dgSpecHash": "uO+XtwtgpFg=",
+  "success": true,
+  "projectFilePath": "/workspaces/NotificationScheduler/EmailSchedulerApp/EmailSchedulerApp.csproj",
+  "expectedPackageFiles": [
+    "/home/codespace/.nuget/packages/dapper/2.1.72/dapper.2.1.72.nupkg.sha512",
+    "/home/codespace/.nuget/packages/hangfire/1.8.23/hangfire.1.8.23.nupkg.sha512",
+    "/home/codespace/.nuget/packages/hangfire.aspnetcore/1.8.23/hangfire.aspnetcore.1.8.23.nupkg.sha512",
+    "/home/codespace/.nuget/packages/hangfire.core/1.8.23/hangfire.core.1.8.23.nupkg.sha512",
+    "/home/codespace/.nuget/packages/hangfire.netcore/1.8.23/hangfire.netcore.1.8.23.nupkg.sha512",
+    "/home/codespace/.nuget/packages/hangfire.sqlserver/1.8.23/hangfire.sqlserver.1.8.23.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.bcl.cryptography/9.0.13/microsoft.bcl.cryptography.9.0.13.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.data.sqlclient/7.0.0/microsoft.data.sqlclient.7.0.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.data.sqlclient.extensions.abstractions/1.0.0/microsoft.data.sqlclient.extensions.abstractions.1.0.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.data.sqlclient.internal.logging/1.0.0/microsoft.data.sqlclient.internal.logging.1.0.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.data.sqlclient.sni.runtime/6.0.2/microsoft.data.sqlclient.sni.runtime.6.0.2.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.identitymodel.abstractions/8.16.0/microsoft.identitymodel.abstractions.8.16.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.16.0/microsoft.identitymodel.jsonwebtokens.8.16.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.identitymodel.logging/8.16.0/microsoft.identitymodel.logging.8.16.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.identitymodel.protocols/8.16.0/microsoft.identitymodel.protocols.8.16.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.16.0/microsoft.identitymodel.protocols.openidconnect.8.16.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.identitymodel.tokens/8.16.0/microsoft.identitymodel.tokens.8.16.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/newtonsoft.json/11.0.1/newtonsoft.json.11.0.1.nupkg.sha512",
+    "/home/codespace/.nuget/packages/system.configuration.configurationmanager/9.0.13/system.configuration.configurationmanager.9.0.13.nupkg.sha512",
+    "/home/codespace/.nuget/packages/system.identitymodel.tokens.jwt/8.16.0/system.identitymodel.tokens.jwt.8.16.0.nupkg.sha512",
+    "/home/codespace/.nuget/packages/system.security.cryptography.pkcs/9.0.13/system.security.cryptography.pkcs.9.0.13.nupkg.sha512",
+    "/home/codespace/.nuget/packages/system.security.cryptography.protecteddata/9.0.13/system.security.cryptography.protecteddata.9.0.13.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Newtonsoft.Json' 11.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "projectPath": "/workspaces/NotificationScheduler/EmailSchedulerApp/EmailSchedulerApp.csproj",
+      "warningLevel": 1,
+      "filePath": "/workspaces/NotificationScheduler/EmailSchedulerApp/EmailSchedulerApp.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
