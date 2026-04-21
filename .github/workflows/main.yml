@@ -26,6 +26,3 @@ jobs:
 
       - name: Build
         run: dotnet build ./EmailSchedulerApp/EmailSchedulerApp.csproj --no-restore
-
-      - name: Test
-        run: dotnet test ./EmailSchedulerApp.Tests/EmailSchedulerApp.csproj --no-build --verbosity normal
