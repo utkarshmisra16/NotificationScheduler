@@ -28,4 +28,4 @@ jobs:
         run: dotnet build ./EmailSchedulerApp/EmailSchedulerApp.csproj --no-restore
 
       - name: Test
-        run: dotnet test ./EmailSchedulerApp/EmailSchedulerApp.csproj --no-build --verbosity normal
+        run: dotnet test ./EmailSchedulerApp.Tests/EmailSchedulerApp.Tests.csproj --no-build --verbosity normal
