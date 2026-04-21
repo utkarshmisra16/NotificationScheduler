@@ -6,7 +6,7 @@ A **production-style, scalable .NET backend system** for scheduling and processi
 
 ## 📊 CI/CD Status
 
-[![CI](https://github.com/utkarshmisra16/NotificationScheduler/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/utkarshmisra16/NotificationScheduler/actions/workflows/dotnet-ci.yml)
+[![CI](https://github.com/utkarshmisra16/NotificationScheduler/actions/workflows/main.yml/badge.svg)](https://github.com/utkarshmisra16/NotificationScheduler/actions/workflows/main.yml)
 
 ---
 
