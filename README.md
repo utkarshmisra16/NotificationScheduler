@@ -176,7 +176,7 @@ dotnet run
 
 ## 🧑‍💻 Author
 
-* GitHub: [https://github.com/](https://github.com/)<USERNAME>
+* GitHub: https://github.com/utkarshmisra16
 
 ---
 
