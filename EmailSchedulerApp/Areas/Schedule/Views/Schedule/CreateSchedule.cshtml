@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Schedule</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="~/css/Dashboard/CreateSchedule.css" />
+</head>
+
+<body>
+
+  <div class="page-wrap">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div class="back-btn" onclick="goStep(currentStep - 1)">
+        <i class="ti ti-arrow-left"></i>
+      </div>
+      <div class="breadcrumb">Schedules &rsaquo; <span>New schedule</span></div>
+    </div>
+
+    <div class="layout">
+
+      <!-- Sidebar nav -->
+      <div class="sidebar">
+        <div class="sidebar-title">Steps</div>
+
+        <div class="nav-item done" id="nav1" onclick="goStep(1)">
+          <div class="nav-num"><i class="ti ti-check" style="font-size:10px"></i></div>
+          <span>Basic info</span>
+        </div>
+
+        <div class="nav-item active" id="nav2" onclick="goStep(2)">
+          <div class="nav-num">2</div>
+          <span>Frequency</span>
+        </div>
+
+        <div class="nav-item" id="nav3" onclick="goStep(3)">
+          <div class="nav-num">3</div>
+          <span>Recipients</span>
+        </div>
+
+        <div class="nav-divider"></div>
+
+        <div class="nav-item" id="nav4" onclick="goStep(4)">
+          <div class="nav-num">4</div>
+          <span>Review</span>
+        </div>
+      </div>
+
+      <!-- Main content panel -->
+      <div class="main-panel">
+
+        <!-- Step 1: Basic Info -->
+        <div id="step1" style="display:none">
+          <div class="panel-head">
+            <div class="panel-title">Basic info</div>
+            <div class="panel-sub">Name your schedule and pick a template</div>
+          </div>
+          <div class="field-grid">
+            <div class="field">
+              <label class="flabel">Schedule name</label>
+              <input class="finput" type="text" id="sname" placeholder="e.g. Weekly digest" oninput="syncReview()">
+            </div>
+            <div class="field">
+              <label class="flabel">Email template</label>
+              <select class="finput" id="stemplate" onchange="syncReview()">
+                <option value="">Select template</option>
+                <option>Template A — Welcome</option>
+                <option>Template B — Reminder</option>
+                <option>Template C — Digest</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="flabel">Start date</label>
+              <input class="finput" type="date" id="sdate" onchange="syncReview()">
+            </div>
+            <div class="field">
+              <label class="flabel">End date <span style="color:#ccc;font-weight:400">(optional)</span></label>
+              <input class="finput" type="date" id="edate">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Frequency -->
+        <div id="step2">
+          <div class="panel-head">
+            <div class="panel-title">Frequency</div>
+            <div class="panel-sub">How often should emails go out?</div>
+          </div>
+          <div class="freq-row">
+            <div class="ftile on" onclick="setFreq(this, 'Daily')">
+              <i class="ti ti-sun ftile-icon"></i>
+              <span class="ftile-lbl">Daily</span>
+              <span class="ftile-sub">Every day</span>
+            </div>
+            <div class="ftile" onclick="setFreq(this, 'Weekly')">
+              <i class="ti ti-calendar-week ftile-icon"></i>
+              <span class="ftile-lbl">Weekly</span>
+              <span class="ftile-sub">Once a week</span>
+            </div>
+            <div class="ftile" onclick="setFreq(this, 'Monthly')">
+              <i class="ti ti-calendar-month ftile-icon"></i>
+              <span class="ftile-lbl">Monthly</span>
+              <span class="ftile-sub">Once a month</span>
+            </div>
+            <div class="ftile" onclick="setFreq(this, 'Custom')">
+              <i class="ti ti-settings ftile-icon"></i>
+              <span class="ftile-lbl">Custom</span>
+              <span class="ftile-sub">Set your own</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Recipients -->
+        <div id="step3" style="display:none">
+          <div class="panel-head">
+            <div class="panel-title">Recipients</div>
+            <div class="panel-sub">Who should receive these emails?</div>
+          </div>
+          <div class="recip-list">
+            <div class="rtile" onclick="toggleRecip(this, 'All users')">
+              <div class="rtile-icon"><i class="ti ti-world"></i></div>
+              <div class="rtile-info">
+                <div class="rtile-name">All users</div>
+                <div class="rtile-desc">Everyone in your workspace</div>
+              </div>
+              <div class="rtile-check"><i class="ti ti-check"></i></div>
+            </div>
+            <div class="rtile" onclick="toggleRecip(this, 'Department wise')">
+              <div class="rtile-icon"><i class="ti ti-building"></i></div>
+              <div class="rtile-info">
+                <div class="rtile-name">Department wise</div>
+                <div class="rtile-desc">Filter by team or department</div>
+              </div>
+              <div class="rtile-check"><i class="ti ti-check"></i></div>
+            </div>
+            <div class="rtile" onclick="toggleRecip(this, 'Custom list')">
+              <div class="rtile-icon"><i class="ti ti-list"></i></div>
+              <div class="rtile-info">
+                <div class="rtile-name">Custom list</div>
+                <div class="rtile-desc">Upload or paste email addresses</div>
+              </div>
+              <div class="rtile-check"><i class="ti ti-check"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Review -->
+        <div id="step4" style="display:none">
+          <div class="panel-head">
+            <div class="panel-title">Review</div>
+            <div class="panel-sub">Check everything before creating</div>
+          </div>
+          <div class="review-box">
+            <div class="review-row">
+              <span class="rr-lbl">Schedule name</span>
+              <span class="rr-val empty" id="rv-name">Not set</span>
+            </div>
+            <div class="review-row">
+              <span class="rr-lbl">Template</span>
+              <span class="rr-val empty" id="rv-tmpl">Not set</span>
+            </div>
+            <div class="review-row">
+              <span class="rr-lbl">Start date</span>
+              <span class="rr-val empty" id="rv-date">Not set</span>
+            </div>
+            <div class="review-row">
+              <span class="rr-lbl">Frequency</span>
+              <span class="rr-val" id="rv-freq">Daily</span>
+            </div>
+            <div class="review-row">
+              <span class="rr-lbl">Recipients</span>
+              <span class="rr-val empty" id="rv-recip">None selected</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom action bar -->
+        <div class="bottom-bar">
+          <div class="btn-group">
+            <button class="btn-cancel" id="prevBtn" style="display:none" onclick="goStep(currentStep - 1)">
+              Back
+            </button>
+            <button class="btn-cancel" id="cancelBtn">Cancel</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn-draft">
+              <i class="ti ti-device-floppy" style="font-size:14px"></i> Save draft
+            </button>
+            <button class="btn-primary" id="nextBtn" onclick="nextStep()">
+              Continue <i class="ti ti-arrow-right" style="font-size:14px"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="~/js/Dashboard/CreateSchedule.js"></script>
+</body>
+
+</html>

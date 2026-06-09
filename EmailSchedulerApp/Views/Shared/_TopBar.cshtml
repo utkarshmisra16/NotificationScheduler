@@ -1,0 +1,242 @@
+<style>
+    .topbar {
+        height: 60px;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .topbar-mobile-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: transparent;
+        cursor: pointer;
+        color: #374151;
+    }
+
+    @@media (max-width: 767px) {
+        .topbar-mobile-toggle {
+            display: flex;
+        }
+    }
+
+    .topbar-breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: #9ca3af;
+    }
+
+    .topbar-breadcrumb span {
+        color: #111827;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .topbar-icon-btn {
+        position: relative;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #6b7280;
+        transition: all 0.15s;
+        text-decoration: none;
+    }
+
+    .topbar-icon-btn:hover {
+        background: #f9fafb;
+        color: #111827;
+        text-decoration: none;
+    }
+
+    .topbar-icon-btn i {
+        font-size: 17px;
+    }
+
+    .notif-dot {
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 7px;
+        height: 7px;
+        background: #ef4444;
+        border-radius: 50%;
+        border: 1.5px solid #fff;
+    }
+
+    .topbar-divider {
+        width: 1px;
+        height: 24px;
+        background: #e5e7eb;
+        margin: 0 4px;
+    }
+
+    .topbar-user-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 10px 5px 6px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background: transparent;
+        cursor: pointer;
+        transition: background 0.15s;
+        text-decoration: none;
+    }
+
+    .topbar-user-btn:hover {
+        background: #f9fafb;
+        text-decoration: none;
+    }
+
+    .topbar-user-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #4f6ef7, #7c3aed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .topbar-user-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .topbar-user-btn .bi-chevron-down {
+        font-size: 11px;
+        color: #9ca3af;
+    }
+
+    .dropdown-menu {
+        border: 1px solid #e5e7eb !important;
+        border-radius: 10px !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+        padding: 6px !important;
+        min-width: 160px;
+    }
+
+    .dropdown-item {
+        border-radius: 6px !important;
+        font-size: 13px !important;
+        color: #374151 !important;
+        padding: 7px 10px !important;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .dropdown-item:hover {
+        background: #f3f4f6 !important;
+        color: #111827 !important;
+    }
+
+    .dropdown-item i {
+        font-size: 14px;
+        color: #9ca3af;
+    }
+
+    .dropdown-divider {
+        margin: 4px 0 !important;
+        border-color: #f3f4f6 !important;
+    }
+
+    .dropdown-item.text-danger {
+        color: #dc2626 !important;
+    }
+
+    .dropdown-item.text-danger i {
+        color: #dc2626;
+    }
+
+    .dropdown-item.text-danger:hover {
+        background: #fef2f2 !important;
+    }
+</style>
+
+<div class="topbar">
+    <div class="topbar-left">
+        <button class="topbar-mobile-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+            <i class="bi bi-list fs-5"></i>
+        </button>
+        <div class="topbar-breadcrumb">
+            <i class="bi bi-house" style="font-size:13px;"></i>
+            <i class="bi bi-chevron-right" style="font-size:10px;"></i>
+            <span>Dashboard</span>
+        </div>
+    </div>
+
+    <div class="topbar-right">
+        <a href="#" class="topbar-icon-btn" title="Search">
+            <i class="bi bi-search"></i>
+        </a>
+
+        <a href="#" class="topbar-icon-btn" title="Notifications">
+            <i class="bi bi-bell"></i>
+            <span class="notif-dot"></span>
+        </a>
+
+        <div class="topbar-divider"></div>
+
+        <div class="dropdown">
+            <a class="topbar-user-btn" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="topbar-user-avatar">A</div>
+                <span class="topbar-user-name">Admin</span>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="bi bi-person"></i> Profile
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="bi bi-gear"></i> Settings
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item text-danger" href="#">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

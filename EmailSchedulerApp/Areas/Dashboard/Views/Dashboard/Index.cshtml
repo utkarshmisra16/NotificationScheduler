@@ -1,0 +1,152 @@
+@using EmailSchedulerApp.Enums
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+@model DashboardDto
+<!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/Dashboard/Dashboard.css" />
+
+<div class="dash-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle">Welcome back, Admin 👋 Here's what's going on.</p>
+        </div>
+        <div class="page-actions">
+            <a href="/Template/Template/CreateTemplate" class="btn-outline-custom">
+                <i class="bi bi-file-earmark-text"></i> New Template
+            </a>
+            <a href="/Schedule/Schedule/CreateSchedule" id="createScheduleBtn" class="btn-primary-custom">
+                <i class="bi bi-plus-lg"></i> Create Schedule
+            </a>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Total Emails</div>
+                <div class="stat-value">@Model.TotalEmails</div>
+                <div class="stat-change neutral">
+                    <i class="bi bi-dash"></i> All time
+                </div>
+            </div>
+            <div class="stat-icon blue">
+                <i class="bi bi-envelope-fill"></i>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Pending</div>
+                <div class="stat-value">@Model.Pending</div>
+                <div class="stat-change neutral">
+                    <i class="bi bi-clock"></i> Queued
+                </div>
+            </div>
+            <div class="stat-icon amber">
+                <i class="bi bi-clock-fill"></i>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Sent</div>
+                <div class="stat-value">@Model.Sent</div>
+                <div class="stat-change up">
+                    <i class="bi bi-arrow-up-short"></i> Delivered
+                </div>
+            </div>
+            <div class="stat-icon green">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div>
+                <div class="stat-label">Failed</div>
+                <div class="stat-value">@Model.Failed</div>
+                <div class="stat-change down">
+                    <i class="bi bi-exclamation-circle"></i> Errors
+                </div>
+            </div>
+            <div class="stat-icon red">
+                <i class="bi bi-x-circle-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Emails Table -->
+    <div class="table-card">
+        <div class="table-card-header">
+            <h2 class="table-card-title">Recent Email Schedules</h2>
+            <a href="#" class="btn-view-all">
+                View All <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Recipients</th>
+                        <th>Scheduled Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.RecentEmails != null && Model.RecentEmails.Any())
+                    {
+                        @foreach (var item in Model.RecentEmails)
+                        {
+                            var statusClass = item.Status switch {
+                            EmailStatus.Sent    => "sent",
+                            EmailStatus.Pending => "pending",
+                            EmailStatus.Failed  => "failed",
+                            _                   => "pending"
+                        };
+                        var statusIcon = item.Status switch {
+                            EmailStatus.Sent    => "bi-check-circle-fill",
+                            EmailStatus.Pending => "bi-clock-fill",
+                            EmailStatus.Failed  => "bi-x-circle-fill",
+                            _                   => "bi-clock-fill"
+                        };
+                            <tr>
+                                <td class="subject-cell" title="@item.Subject">@item.Subject</td>
+                                <td>
+                                    <span class="recipients-badge">
+                                        <i class="bi bi-people-fill" style="font-size:11px;"></i>
+                                        @item.Recipients
+                                    </span>
+                                </td>
+                                <td class="time-cell">
+                                    <i class="bi bi-calendar3 me-1" style="font-size:12px; color:#94a3b8;"></i>
+                                    @item.ScheduledTime.ToString("dd MMM yyyy, hh:mm tt")
+                                </td>
+                                <td>
+                                    <span class="status-badge @statusClass">
+                                        <span class="status-dot"></span>
+                                        @item.Status
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">
+                                <div class="empty-state">
+                                    <i class="bi bi-inbox"></i>
+                                    <div>No email schedules yet.</div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
