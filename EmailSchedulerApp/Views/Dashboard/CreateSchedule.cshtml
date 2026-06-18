@@ -1,0 +1,626 @@
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="stylesheet" href="~/css/Dashboard/CreateSchedule.css" />
+
+<div class="create-schedule-container">
+  
+  <!-- Header -->
+  <div class="schedule-header">
+    <div class="header-content">
+      <h1><i class="ti ti-calendar-event"></i> Create Schedule</h1>
+      <p>Set up a new notification schedule with custom frequency and recipients</p>
+    </div>
+    <div class="progress-indicator">
+      <div class="progress-step completed" id="step-indicator-1">
+        <span>1</span>
+        <label>Basic Info</label>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step active" id="step-indicator-2">
+        <span>2</span>
+        <label>Schedule & Frequency</label>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step" id="step-indicator-3">
+        <span>3</span>
+        <label>Recipients</label>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step" id="step-indicator-4">
+        <span>4</span>
+        <label>Review</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="schedule-content">
+    
+    <!-- Step 1: Basic Info -->
+    <div class="step-panel" id="step1" style="display: none;">
+      <div class="panel-header">
+        <h2>Basic Information</h2>
+        <p>Give your schedule a name and select a template</p>
+      </div>
+
+      <div class="form-section">
+        <div class="form-group">
+          <label class="form-label">
+            <span>Schedule Name</span>
+            <span class="required">*</span>
+          </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="sname" 
+            placeholder="e.g. Weekly Customer Digest, Daily Standup" 
+            oninput="syncReview()"
+            maxlength="100">
+          <small class="form-text">Give your schedule a descriptive name</small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <span>Notification Channel</span>
+            <span class="required">*</span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="channel" value="Email" checked onchange="syncReview()">
+              <span class="radio-label">
+                <i class="ti ti-mail"></i>
+                <strong>Email</strong>
+                <small>Send via email</small>
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="channel" value="SMS" onchange="syncReview()">
+              <span class="radio-label">
+                <i class="ti ti-message"></i>
+                <strong>SMS</strong>
+                <small>Send via text message</small>
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="channel" value="WhatsApp" onchange="syncReview()">
+              <span class="radio-label">
+                <i class="ti ti-brand-whatsapp"></i>
+                <strong>WhatsApp</strong>
+                <small>Send via WhatsApp</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <span>Email Template</span>
+            <span class="required">*</span>
+          </label>
+          <select class="form-control" id="stemplate" onchange="syncReview()">
+            <option value="">Select a template</option>
+            <option value="template-welcome">Template A — Welcome Email</option>
+            <option value="template-reminder">Template B — Reminder</option>
+            <option value="template-digest">Template C — Weekly Digest</option>
+            <option value="template-alert">Template D — Alert</option>
+            <option value="template-custom">Create Custom</option>
+          </select>
+          <small class="form-text">Choose a pre-built template or create a custom one</small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">
+            <span>Description</span>
+            <span class="optional">(optional)</span>
+          </label>
+          <textarea 
+            class="form-control" 
+            id="sdesc" 
+            rows="3" 
+            placeholder="Add notes about this schedule..."
+            oninput="syncReview()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Schedule & Frequency -->
+    <div class="step-panel active" id="step2">
+      <div class="panel-header">
+        <h2>Schedule & Frequency</h2>
+        <p>Set when and how often notifications should be sent</p>
+      </div>
+
+      <!-- Date & Time Section -->
+      <div class="form-section">
+        <h3 class="section-title">📅 Schedule Timing</h3>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">
+              <span>Start Date</span>
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="date" 
+              class="form-control" 
+              id="sdate" 
+              onchange="syncReview(); updateMinEndDate()">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Start Time</span>
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="time" 
+              class="form-control" 
+              id="stime" 
+              value="09:00"
+              onchange="syncReview()">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              <span>Timezone</span>
+              <span class="required">*</span>
+            </label>
+            <select class="form-control" id="stimezone" onchange="syncReview()">
+              <option value="UTC">UTC</option>
+              <option value="EST">EST (Eastern)</option>
+              <option value="CST">CST (Central)</option>
+              <option value="PST">PST (Pacific)</option>
+              <option value="IST" selected>IST (India)</option>
+              <option value="SGT">SGT (Singapore)</option>
+              <option value="GMT">GMT (London)</option>
+              <option value="CET">CET (Central Europe)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frequency Section -->
+      <div class="form-section">
+        <h3 class="section-title">🔁 Recurrence Pattern</h3>
+        
+        <div class="frequency-grid">
+          <div class="freq-card" onclick="setFreq(this, 'Once')" id="freq-once">
+            <div class="freq-icon">
+              <i class="ti ti-send"></i>
+            </div>
+            <div class="freq-content">
+              <div class="freq-title">Once</div>
+              <div class="freq-desc">Send only once</div>
+            </div>
+            <div class="freq-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+
+          <div class="freq-card selected" onclick="setFreq(this, 'Daily')" id="freq-daily">
+            <div class="freq-icon">
+              <i class="ti ti-sun"></i>
+            </div>
+            <div class="freq-content">
+              <div class="freq-title">Daily</div>
+              <div class="freq-desc">Every day</div>
+            </div>
+            <div class="freq-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+
+          <div class="freq-card" onclick="setFreq(this, 'Weekly')" id="freq-weekly">
+            <div class="freq-icon">
+              <i class="ti ti-calendar-week"></i>
+            </div>
+            <div class="freq-content">
+              <div class="freq-title">Weekly</div>
+              <div class="freq-desc">Once a week</div>
+            </div>
+            <div class="freq-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+
+          <div class="freq-card" onclick="setFreq(this, 'Monthly')" id="freq-monthly">
+            <div class="freq-icon">
+              <i class="ti ti-calendar-month"></i>
+            </div>
+            <div class="freq-content">
+              <div class="freq-title">Monthly</div>
+              <div class="freq-desc">Once a month</div>
+            </div>
+            <div class="freq-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+
+          <div class="freq-card" onclick="setFreq(this, 'Custom')" id="freq-custom">
+            <div class="freq-icon">
+              <i class="ti ti-settings"></i>
+            </div>
+            <div class="freq-content">
+              <div class="freq-title">Custom</div>
+              <div class="freq-desc">Advanced schedule</div>
+            </div>
+            <div class="freq-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conditional: Weekly Options -->
+      <div class="form-section" id="weekly-options" style="display: none;">
+        <h4 class="section-title">📆 Select Days</h4>
+        <div class="day-selector">
+          <label class="day-check">
+            <input type="checkbox" name="day" value="MON">
+            <span>Mon</span>
+          </label>
+          <label class="day-check">
+            <input type="checkbox" name="day" value="TUE">
+            <span>Tue</span>
+          </label>
+          <label class="day-check">
+            <input type="checkbox" name="day" value="WED">
+            <span>Wed</span>
+          </label>
+          <label class="day-check">
+            <input type="checkbox" name="day" value="THU">
+            <span>Thu</span>
+          </label>
+          <label class="day-check">
+            <input type="checkbox" name="day" value="FRI" checked>
+            <span>Fri</span>
+          </label>
+          <label class="day-check">
+            <input type="checkbox" name="day" value="SAT">
+            <span>Sat</span>
+          </label>
+          <label class="day-check">
+            <input type="checkbox" name="day" value="SUN">
+            <span>Sun</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Conditional: Custom Cron -->
+      <div class="form-section" id="custom-options" style="display: none;">
+        <h4 class="section-title">⚙️ Cron Expression</h4>
+        <div class="form-group">
+          <label class="form-label">Cron Pattern</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="cron-input" 
+            placeholder="e.g. 0 9 * * 1-5 (Mon-Fri at 9 AM)"
+            onchange="syncReview()">
+          <small class="form-text">
+            Format: <code>minute hour day month weekday</code><br>
+            Example: <code>0 9 * * 1-5</code> = Weekdays at 9 AM
+          </small>
+        </div>
+      </div>
+
+      <!-- End Date (for recurring) -->
+      <div class="form-section">
+        <div class="form-group">
+          <label class="form-label">
+            <span>End Date (for recurring)</span>
+            <span class="optional">(optional)</span>
+          </label>
+          <input 
+            type="date" 
+            class="form-control" 
+            id="edate"
+            onchange="syncReview()">
+          <small class="form-text">Leave empty to repeat indefinitely</small>
+        </div>
+      </div>
+
+      <!-- Retry Policy -->
+      <div class="form-section">
+        <h3 class="section-title">🔄 Retry Policy</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">
+              <span>Max Retries</span>
+            </label>
+            <input 
+              type="number" 
+              class="form-control" 
+              id="max-retries" 
+              value="3" 
+              min="0" 
+              max="10"
+              onchange="syncReview()">
+          </div>
+          <div class="form-group">
+            <label class="form-label">
+              <span>Retry Interval (minutes)</span>
+            </label>
+            <input 
+              type="number" 
+              class="form-control" 
+              id="retry-interval" 
+              value="5" 
+              min="1"
+              onchange="syncReview()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Recipients -->
+    <div class="step-panel" id="step3" style="display: none;">
+      <div class="panel-header">
+        <h2>Recipients</h2>
+        <p>Who should receive these notifications?</p>
+      </div>
+
+      <div class="form-section">
+        <h3 class="section-title">👥 Select Recipients</h3>
+        
+        <div class="recipient-options">
+          <div class="recip-card" onclick="toggleRecip(this, 'all-users')" id="recip-all-users">
+            <div class="recip-icon">
+              <i class="ti ti-world"></i>
+            </div>
+            <div class="recip-info">
+              <div class="recip-title">All Users</div>
+              <div class="recip-desc">Send to everyone in workspace</div>
+            </div>
+            <div class="recip-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+
+          <div class="recip-card selected" onclick="toggleRecip(this, 'department')" id="recip-department">
+            <div class="recip-icon">
+              <i class="ti ti-building"></i>
+            </div>
+            <div class="recip-info">
+              <div class="recip-title">By Department</div>
+              <div class="recip-desc">Filter by team or department</div>
+            </div>
+            <div class="recip-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+
+          <div class="recip-card" onclick="toggleRecip(this, 'role')" id="recip-role">
+            <div class="recip-icon">
+              <i class="ti ti-id-badge"></i>
+            </div>
+            <div class="recip-info">
+              <div class="recip-title">By Role</div>
+              <div class="recip-desc">Send to specific roles or positions</div>
+            </div>
+            <div class="recip-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+
+          <div class="recip-card" onclick="toggleRecip(this, 'custom-list')" id="recip-custom-list">
+            <div class="recip-icon">
+              <i class="ti ti-list"></i>
+            </div>
+            <div class="recip-info">
+              <div class="recip-title">Custom List</div>
+              <div class="recip-desc">Upload or paste email addresses</div>
+            </div>
+            <div class="recip-check"><i class="ti ti-circle-check"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Department Selection (Conditional) -->
+      <div class="form-section" id="department-select" style="display: none;">
+        <h4 class="section-title">Select Departments</h4>
+        <div class="checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" name="dept" value="engineering">
+            <span class="checkbox-label">Engineering (45 users)</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="dept" value="marketing">
+            <span class="checkbox-label">Marketing (28 users)</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="dept" value="sales">
+            <span class="checkbox-label">Sales (32 users)</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="dept" value="hr">
+            <span class="checkbox-label">HR (12 users)</span>
+          </label>
+          <label class="checkbox-option">
+            <input type="checkbox" name="dept" value="finance">
+            <span class="checkbox-label">Finance (18 users)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Custom Email List (Conditional) -->
+      <div class="form-section" id="custom-email-list" style="display: none;">
+        <h4 class="section-title">Enter Email Addresses</h4>
+        <div class="form-group">
+          <textarea 
+            class="form-control" 
+            id="custom-emails" 
+            rows="6" 
+            placeholder="Paste emails here (one per line)&#10;user1@example.com&#10;user2@example.com&#10;user3@example.com"
+            onchange="syncReview()"></textarea>
+          <small class="form-text">One email per line or comma-separated</small>
+        </div>
+        <div class="upload-area">
+          <input type="file" id="email-file" accept=".csv,.txt" style="display:none">
+          <button type="button" class="btn-upload" onclick="document.getElementById('email-file').click()">
+            <i class="ti ti-upload"></i> Upload CSV
+          </button>
+          <small class="form-text">Or upload a CSV/TXT file</small>
+        </div>
+      </div>
+
+      <!-- Exclusions -->
+      <div class="form-section">
+        <h4 class="section-title">⛔ Exclusions (optional)</h4>
+        <div class="form-group">
+          <label class="form-label">Exclude Emails</label>
+          <textarea 
+            class="form-control" 
+            id="exclude-emails" 
+            rows="3" 
+            placeholder="Emails to exclude (one per line)"
+            onchange="syncReview()"></textarea>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div class="form-section">
+        <div class="recipient-preview">
+          <div class="preview-stat">
+            <span class="stat-label">Total Recipients:</span>
+            <span class="stat-value" id="total-recipients">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Review & Confirm -->
+    <div class="step-panel" id="step4" style="display: none;">
+      <div class="panel-header">
+        <h2>Review Schedule</h2>
+        <p>Verify all details before creating</p>
+      </div>
+
+      <div class="review-sections">
+        <!-- Basic Info Summary -->
+        <div class="review-card">
+          <div class="review-header">
+            <i class="ti ti-info-circle"></i>
+            <h3>Basic Information</h3>
+            <button class="btn-edit-mini" onclick="goStep(1)"><i class="ti ti-pencil"></i></button>
+          </div>
+          <div class="review-body">
+            <div class="review-item">
+              <span class="review-key">Schedule Name:</span>
+              <span class="review-value" id="rv-name">Not set</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">Channel:</span>
+              <span class="review-value" id="rv-channel">Not set</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">Template:</span>
+              <span class="review-value" id="rv-tmpl">Not set</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">Description:</span>
+              <span class="review-value" id="rv-desc">Not set</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Info Summary -->
+        <div class="review-card">
+          <div class="review-header">
+            <i class="ti ti-calendar"></i>
+            <h3>Schedule & Frequency</h3>
+            <button class="btn-edit-mini" onclick="goStep(2)"><i class="ti ti-pencil"></i></button>
+          </div>
+          <div class="review-body">
+            <div class="review-item">
+              <span class="review-key">Start Date & Time:</span>
+              <span class="review-value" id="rv-datetime">Not set</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">Timezone:</span>
+              <span class="review-value" id="rv-tz">Not set</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">Frequency:</span>
+              <span class="review-value" id="rv-freq">Not set</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">End Date:</span>
+              <span class="review-value" id="rv-edate">No limit</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">Max Retries:</span>
+              <span class="review-value" id="rv-retries">3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recipients Summary -->
+        <div class="review-card">
+          <div class="review-header">
+            <i class="ti ti-users"></i>
+            <h3>Recipients</h3>
+            <button class="btn-edit-mini" onclick="goStep(3)"><i class="ti ti-pencil"></i></button>
+          </div>
+          <div class="review-body">
+            <div class="review-item">
+              <span class="review-key">Recipient Type:</span>
+              <span class="review-value" id="rv-recip-type">Not set</span>
+            </div>
+            <div class="review-item">
+              <span class="review-key">Count:</span>
+              <span class="review-value" id="rv-recip-count">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metadata (Optional) -->
+        <div class="review-card">
+          <div class="review-header">
+            <i class="ti ti-tag"></i>
+            <h3>Metadata (Optional)</h3>
+          </div>
+          <div class="review-body">
+            <div class="form-group">
+              <label class="form-label">Tags</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="rv-tags" 
+                placeholder="e.g. important, q2-campaign, weekly"
+                onchange="syncReview()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Priority</label>
+              <select class="form-control" id="rv-priority" onchange="syncReview()">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning Alert -->
+      <div class="alert-box warning">
+        <i class="ti ti-alert-circle"></i>
+        <div>
+          <strong>Note:</strong> Recurring schedules will continue until the end date or manually stopped. Make sure all details are correct.
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Bar -->
+    <div class="action-bar">
+      <div class="action-left">
+        <button class="btn btn-outline" id="prevBtn" style="display: none;" onclick="goStep(currentStep - 1)">
+          <i class="ti ti-arrow-left"></i> Back
+        </button>
+        <button class="btn btn-outline-danger" id="cancelBtn" onclick="cancelSchedule()">
+          <i class="ti ti-x"></i> Cancel
+        </button>
+      </div>
+      <div class="action-right">
+        <button class="btn btn-outline" id="draftBtn" onclick="saveDraft()">
+          <i class="ti ti-device-floppy"></i> Save as Draft
+        </button>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">
+          Continue <i class="ti ti-arrow-right"></i>
+        </button>
+        <button class="btn btn-success" id="submitBtn" style="display: none;" onclick="submitSchedule()">
+          <i class="ti ti-check"></i> Create Schedule
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="~/js/Dashboard/CreateSchedule.js"></script>
