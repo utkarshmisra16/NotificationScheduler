@@ -3,6 +3,7 @@ let selectedFiles = [];
 let dropZone, fileInput, fileList;
 
 $(document).ready(function () {
+    $("#createBtn").click(saveTemplate);
     quill = new Quill('#quill-editor', {
         theme: 'snow',
         placeholder: 'Write your email content here...',
@@ -21,7 +22,7 @@ $(document).ready(function () {
 
     dropZone = document.getElementById('dropZone');
     fileInput = document.getElementById('attachmentInput');
-    fileList  = document.getElementById('fileList');
+    fileList = document.getElementById('fileList');
 
     dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
     dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
@@ -88,4 +89,76 @@ function removeFile(index) {
 
 function submitForm() {
     document.getElementById('bodyContent').value = quill.root.innerHTML;
+}
+
+function validateFields() {
+    let isValid = true;
+    const templateName = $("#templateName").val().trim();
+    const subject = $("#subject").val().trim();
+    const bodyContent = quill.root.innerHTML.trim();
+
+    if (!templateName) {
+        $("#templateNameError").text("Template Name is required.");
+        isValid = false;
+    } else {
+        $("#templateNameError").text("");
+    }
+
+    if (!subject) {
+        $("#subjectError").text("Subject is required.");
+        isValid = false;
+    } else {
+        $("#subjectError").text("");
+    }
+
+    if (!bodyContent || bodyContent === "<p><br></p>") {
+        $("#bodyError").text("Email Body is required.");
+        isValid = false;
+    } else {
+        $("#bodyError").text("");
+    }
+
+    return isValid;
+}
+
+function saveTemplate() {
+    if (!validateFields()) return;
+    var formData = new FormData();
+    formData.append("TemplateName", $("#templateName").val());
+    formData.append("Subject", $("#subject").val());
+    formData.append("Body", quill.root.innerHTML);
+    formData.append("IsActive", true);
+    var files = $("#attachmentInput")[0].files;
+    for (let i = 0; i < files.length; i++) {
+        formData.append("Attachments", files[i]);
+    }
+
+    $.ajax({
+        url: "/Template/Template/CreateTemplate",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.success) {
+                console.log("SUCCESS");
+                showSuccess(response.message);
+                // Form Reset
+                $("#templateName").val("");
+                $("#subject").val("");
+                quill.setContents([]);
+                $("#attachmentInput").val("");
+
+                // Top par scroll
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+            else {
+                showError(response.message);
+            }
+        },
+
+        error: function (xhr, status, error) {
+            showError("Something went wrong. Please try again.");
+        }
+    });
 }

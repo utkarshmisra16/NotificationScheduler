@@ -38,7 +38,8 @@
     ".NETCoreApp,Version=v10.0": {
       "EmailSchedulerApp/1.0.0": {
         "dependencies": {
-          "Dapper": "2.1.72",
+          "BCrypt.Net-Next": "4.2.0",
+          "Dapper": "2.1.79",
           "Hangfire": "1.8.23",
           "Hangfire.AspNetCore": "1.8.23",
           "Hangfire.SqlServer": "1.8.23",
@@ -359,11 +360,22 @@
           "EmailSchedulerApp.dll": {}
         }
       },
-      "Dapper/2.1.72": {
+      "BCrypt.Net-Next/4.2.0": {
+        "runtime": {
+          "lib/net10.0/BCrypt-Net-Next.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.2.0.0"
+          }
+        },
+        "compile": {
+          "lib/net10.0/BCrypt-Net-Next.dll": {}
+        }
+      },
+      "Dapper/2.1.79": {
         "runtime": {
           "lib/net10.0/Dapper.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.1.72.10375"
+            "fileVersion": "2.1.79.29349"
           }
         },
         "compile": {
@@ -2786,12 +2798,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Dapper/2.1.72": {
+    "BCrypt.Net-Next/4.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ns4mGqQd9a/MhP8m6w556vVlZIa0/MfUu03zrxjZC/jlr1uVCsUac8bkdB+Fs98Llbd56rRSo1eZH5VVmeGZyw==",
-      "path": "dapper/2.1.72",
-      "hashPath": "dapper.2.1.72.nupkg.sha512"
+      "sha512": "sha512-gwLD2KfCuwQesP17aVh4h6lpiMPEVt5Lbpndo0ej903hNUUTtyxt3ARdDjmuydBRTAUICc7OVKVbaOvc6SQYXA==",
+      "path": "bcrypt.net-next/4.2.0",
+      "hashPath": "bcrypt.net-next.4.2.0.nupkg.sha512"
+    },
+    "Dapper/2.1.79": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8YijbzgTfmqmQOnVNorYM6K++pxqnW3nJ4aC1sRHzxUA2CcuoJ9gsTem3kgBnPRMc38zZHl4Esb6hAezXIEEuw==",
+      "path": "dapper/2.1.79",
+      "hashPath": "dapper.2.1.79.nupkg.sha512"
     },
     "Hangfire.AspNetCore/1.8.23": {
       "type": "package",

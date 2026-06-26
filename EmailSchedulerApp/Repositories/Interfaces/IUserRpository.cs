@@ -3,6 +3,6 @@ namespace EmailSchedulerApp.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        User GetUserByUsername(string username);
+        User? GetUserByUsername(string? Email);
     }
 }

@@ -1,0 +1,170 @@
+    <!-- RIGHT PANEL -->
+    <div class="auth-box">
+
+        <div class="auth-box-header">
+            <h2>Create Account 🚀</h2>
+            <p>Sign up to start scheduling your emails</p>
+        </div>
+
+        <!-- Display Validation Errors -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>
+                    @foreach (var modelState in ViewData.ModelState.Values)
+                    {
+                        @foreach (var error in modelState.Errors)
+                        {
+                            <p class="mb-1">@error.ErrorMessage</p>
+                        }
+                    }
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <div class="auth-card">
+
+            <form method="post" id="registerForm" novalidate>
+                @Html.AntiForgeryToken()
+
+                <!-- Full Name -->
+                <div class="mb-3">
+                    <label for="FullName" class="form-label-sm">Full Name</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-person input-icon"></i>
+                        <input type="text"
+                               id="FullName"
+                               name="FullName"
+                               class="form-control"
+                               placeholder="Enter your full name"
+                               required />
+                        <div class="invalid-feedback">
+                            Please enter your full name.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="Email" class="form-label-sm">Email Address</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-envelope input-icon"></i>
+                        <input type="email"
+                               id="Email"
+                               name="Email"
+                               class="form-control"
+                               placeholder="Enter your email"
+                               required />
+                        <div class="invalid-feedback">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Username -->
+                <div class="mb-3">
+                    <label for="Username" class="form-label-sm">Username</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-person-badge input-icon"></i>
+                        <input type="text"
+                               id="Username"
+                               name="Username"
+                               class="form-control"
+                               placeholder="Choose a username"
+                               required />
+                        <div class="invalid-feedback">
+                            Please enter a username.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label for="Password" class="form-label-sm">Password</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-lock input-icon"></i>
+
+                        <input type="password"
+                               id="Password"
+                               name="Password"
+                               class="form-control"
+                               placeholder="Create a password"
+                               required />
+
+                        <button type="button"
+                                class="toggle-pwd"
+                                data-toggle-target="Password">
+                            <i class="bi bi-eye"></i>
+                        </button>
+
+                        <div class="invalid-feedback">
+                            Please enter a password.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-4">
+                    <label for="ConfirmPassword" class="form-label-sm">Confirm Password</label>
+                    <div class="input-icon-wrap">
+                        <i class="bi bi-shield-lock input-icon"></i>
+
+                        <input type="password"
+                               id="ConfirmPassword"
+                               name="ConfirmPassword"
+                               class="form-control"
+                               placeholder="Confirm your password"
+                               required />
+
+                        <button type="button"
+                                class="toggle-pwd"
+                                data-toggle-target="ConfirmPassword">
+                            <i class="bi bi-eye"></i>
+                        </button>
+
+                        <div class="invalid-feedback">
+                            Please confirm your password.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="form-check mb-4">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           id="AcceptTerms"
+                           required />
+
+                    <label class="form-check-label" for="AcceptTerms">
+                        I agree to the
+                        <a href="#">Terms & Conditions</a>
+                        and
+                        <a href="#">Privacy Policy</a>.
+                    </label>
+
+                    <div class="invalid-feedback">
+                        You must accept the terms.
+                    </div>
+                </div>
+
+                <!-- Register Button -->
+                <button type="submit" class="btn btn-login w-100">
+                    <i class="bi bi-person-plus me-2"></i>
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="text-center mt-3 small text-muted">
+                Already have an account?
+                <a href="#" id="login" class="text-decoration-none">
+                    Login here
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+

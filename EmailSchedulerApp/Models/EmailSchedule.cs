@@ -1,24 +1,27 @@
+using System;
 using EmailSchedulerApp.Enums;
 
-public class EmailSchedule
+namespace EmailSchedulerApp.Models
 {
-    public int ScheduleId { get; set; }
-
-    public string Subject { get; set; } = string.Empty;
-
-    public string Body { get; set; } = string.Empty;
-
-    public string? Recipients { get; set; }
-    
-    public DateTime ScheduledTime { get; set; }
-
-    public EmailStatus Status { get; set; }
-
-    public int RetryCount { get; set; }
-
-    public int? CreatedBy { get; set; }
-
-    public DateTime CreatedOn { get; set; }
-
-    public DateTime? UpdatedOn { get; set; }
+    public class Schedule
+    {
+        public int ScheduleId { get; set; }
+        public int TemplateId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Channel { get; set; } = string.Empty;
+        public string? Description { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public string Timezone { get; set; } = string.Empty;
+        public int Frequency { get; set; }
+        public string? WeekDays { get; set; }
+        public string? CronExpression { get; set; }
+        public string? Tags { get; set; }
+        public int Priority { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+        public string CreatedBy { get; set; } = string.Empty;
+    }
 }

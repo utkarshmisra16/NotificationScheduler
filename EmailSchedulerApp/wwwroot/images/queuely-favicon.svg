@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Rounded square background -->
+  <rect width="32" height="32" rx="7" fill="#378ADD"/>
+
+  <!-- Q letterform -->
+  <text
+    x="15"
+    y="22"
+    text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="20"
+    font-weight="700"
+    fill="white"
+  >Q</text>
+
+  <!-- Teal "active/send" dot — bottom-right corner -->
+  <circle cx="23.5" cy="23.5" r="5" fill="#1D9E75"/>
+
+  <!-- Plus icon inside teal dot (queue action) -->
+  <rect x="21" y="22.75" width="5" height="1.5" rx="0.75" fill="white"/>
+  <rect x="22.75" y="21" width="1.5" height="5" rx="0.75" fill="white"/>
+</svg>

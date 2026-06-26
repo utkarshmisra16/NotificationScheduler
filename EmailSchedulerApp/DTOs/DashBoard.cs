@@ -1,3 +1,5 @@
+using EmailSchedulerApp.ViewModels.Dashboard;
+
 public class DashboardDto
 {
     public int TotalEmails { get; set; }
@@ -5,5 +7,5 @@ public class DashboardDto
     public int Sent { get; set; }
     public int Failed { get; set; }
 
-    public List<EmailSchedule> RecentEmails { get; set; }
+    public required List<RecentEmailViewModel> RecentEmails { get; set; }
 }

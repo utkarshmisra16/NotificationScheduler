@@ -1,12 +1,12 @@
 @using EmailSchedulerApp.Enums
+@model EmailSchedulerApp.ViewModels.Dashboard.DashboardViewModel
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-@model DashboardDto
 <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/Dashboard/Dashboard.css" />
 
-<div class="dash-page">
+<div class="dash-page">s a
     <!-- Page Header -->
     <div class="page-header">
         <div>
@@ -27,8 +27,8 @@
     <div class="stats-grid">
         <div class="stat-card">
             <div>
-                <div class="stat-label">Total Emails</div>
-                <div class="stat-value">@Model.TotalEmails</div>
+                <div class="stat-label">Total Schedules</div>
+                <div class="stat-value">@Model.Total</div>
                 <div class="stat-change neutral">
                     <i class="bi bi-dash"></i> All time
                 </div>
@@ -99,7 +99,7 @@
                 <tbody>
                     @if (Model.RecentEmails != null && Model.RecentEmails.Any())
                     {
-                        @foreach (var item in Model.RecentEmails)
+                        @foreach (EmailSchedulerApp.ViewModels.Dashboard.RecentEmailViewModel item in Model.RecentEmails)
                         {
                             var statusClass = item.Status switch {
                             EmailStatus.Sent    => "sent",
@@ -123,7 +123,7 @@
                                 </td>
                                 <td class="time-cell">
                                     <i class="bi bi-calendar3 me-1" style="font-size:12px; color:#94a3b8;"></i>
-                                    @item.ScheduledTime.ToString("dd MMM yyyy, hh:mm tt")
+                                    @item.ScheduledTime
                                 </td>
                                 <td>
                                     <span class="status-badge @statusClass">

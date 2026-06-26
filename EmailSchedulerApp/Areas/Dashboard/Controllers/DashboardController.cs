@@ -10,7 +10,7 @@ namespace EmailSchedulerApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var data = await _dashboardService.GetDashboardDataAsync();
+            var data = await _dashboardService.GetDashboardAsync();
 
             return View(data);
         }

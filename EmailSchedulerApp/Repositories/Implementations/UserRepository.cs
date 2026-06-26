@@ -15,16 +15,14 @@ namespace EmailSchedulerApp.Repositories.Implementations
             _db = db;
         }
 
-        public User GetUserByUsername(string username)
+        public User? GetUserByUsername(string? Email)
         {
             using IDbConnection conn = _db.CreateConnection();
 
-            string query = @"
-                SELECT TOP 1 *
-                FROM Users
-                WHERE Username = @Username AND IsActive = 1";
+            string query = @"SELECT u.UserId, am.PasswordHash FROM Users u JOIN UserAuthMethods am ON u.UserId = am.UserId
+                            WHERE u.Email = @Email AND am.Provider = 'EMAIL';";
 
-            return conn.QueryFirstOrDefault<User>(query, new { Username = username });
+            return conn.QueryFirstOrDefault<User>(query, new { Email });
         }
     }
 }

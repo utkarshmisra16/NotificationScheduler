@@ -1,4 +1,9 @@
-public interface IDashboardRepository
+using EmailSchedulerApp.DTOs.Dashboard;
+namespace EmailSchedulerApp.Repositories.Interfaces
 {
-    Task<DashboardDto> GetDashboardDataAsync();
+    public interface IDashboardRepository
+    {
+        // Task<DashboardDto> GetDashboardDataAsync();
+        Task<List<RecentEmailScheduleDto>> GetRecentSchedulesAsync();
+    }
 }

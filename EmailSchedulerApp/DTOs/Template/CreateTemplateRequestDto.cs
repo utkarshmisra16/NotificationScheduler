@@ -14,6 +14,7 @@ namespace EmailSchedulerApp.DTOs.Template
 
         [Required(ErrorMessage = "Body is required.")]
         public string Body {get; set;} = string.Empty;
+        public List<IFormFile>? Attachments { get; set; }
         public bool IsActive {get; set;} = true;
     }
 }

@@ -2,6 +2,7 @@ using EmailSchedulerApp.DTOs;
 using EmailSchedulerApp.Models;
 using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Interfaces;
+using BCrypt.Net;
 
 public class AuthService : IAuthService
 {
@@ -14,7 +15,7 @@ public class AuthService : IAuthService
 
     public LoginResponsedto Login(LoginRequestDto request)
     {
-        User user = _userRepository.GetUserByUsername(request.Username);
+        User? user = _userRepository.GetUserByUsername(request.Email);
 
         if (user == null)
         {
@@ -25,7 +26,7 @@ public class AuthService : IAuthService
             };
         }
 
-        if (user.PasswordHash != request.Password)
+        if (!BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
         {
             return new LoginResponsedto
             {

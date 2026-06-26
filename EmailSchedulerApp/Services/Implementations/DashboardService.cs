@@ -1,4 +1,7 @@
+using EmailSchedulerApp.Enums;
+using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Interfaces;
+using EmailSchedulerApp.ViewModels.Dashboard;
 
 namespace EmailSchedulerApp.Services.Implementation
 {
@@ -6,9 +9,27 @@ namespace EmailSchedulerApp.Services.Implementation
     {
         private readonly IDashboardRepository _repository = repository;
 
-        public async Task<DashboardDto> GetDashboardDataAsync()
+        // public async Task<DashboardDto> GetDashboardDataAsync()
+        // {
+        //     return await _repository.GetDashboardDataAsync();
+        // }
+
+        public async Task<DashboardViewModel> GetDashboardAsync()
         {
-            return await _repository.GetDashboardDataAsync();
+            var recentSchedules = await _repository.GetRecentSchedulesAsync();
+            return new DashboardViewModel
+            {
+                RecentEmails = recentSchedules
+                    .Select(x => new RecentEmailViewModel
+                    {
+                        ScheduleId = x.ScheduleId,
+                        Subject = x.Name,
+                        Recipients = x.RecipientCount,
+                        ScheduledTime = $"{x.StartDate:dd MMM yyyy} {x.StartTime}",
+                        Status = x.IsActive ? EmailStatus.Pending : EmailStatus.Sent
+                    })
+                    .ToList()
+            };
         }
     }
 }

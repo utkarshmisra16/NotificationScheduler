@@ -5,5 +5,6 @@ namespace EmailSchedulerApp.DTOs.Template
         public int TemplateId {get; set;}
         public string Message {get; set;} = string.Empty;
         public bool Success {get; set;}
+        public string? FieldName { get; set; }
     }
 }

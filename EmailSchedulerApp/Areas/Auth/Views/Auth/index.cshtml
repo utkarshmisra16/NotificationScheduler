@@ -1,0 +1,64 @@
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/auth.css" />
+<div class="auth-container">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-left">
+        <div class="auth-left-content">
+
+        <div class="d-flex align-items-center gap-2">
+            <div class="brand-logo">
+                <img src="~/images/queuely-icon.svg" alt="Queuely" class="img-fluid" />
+            </div>
+            <div>
+                <h1 class="mb-3">QueueIt</h1>
+            </div>
+        </div>
+
+            <p class="auth-tagline">Queue it. Send it. Done.</p>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-envelope-check" aria-hidden="true"></i>
+                    </div>
+                    <span>Track emails efficiently</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-lightning-charge" aria-hidden="true"></i>
+                    </div>
+                    <span>Boost productivity</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-bar-chart-line" aria-hidden="true"></i>
+                    </div>
+                    <span>Monitor progress</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-clock-history" aria-hidden="true"></i>
+                    </div>
+                    <span>Automate scheduling</span>
+                </div>
+            </div>
+
+            <div class="auth-footer-note">
+                Trusted by teams to deliver on time, every time.
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div id="auth-right" class="auth-right"></div>
+
+</div>
+
+ <script src="~/js/Auth/auth.js"></script>
+ <script src="~/js/Auth/Login.js"></script>
+ <script src="~/js/Auth/register.js"></script>

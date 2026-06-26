@@ -3,6 +3,6 @@ namespace EmailSchedulerApp.Services.Interfaces
 {
     public interface ITemplateService
     {
-        Task<CreateTemplateRequestDto> GetDashboardDataAsync();
+        Task<CreateTemplateResponseDto> SaveTemplate(CreateTemplateRequestDto request);
     }
 }

@@ -4,14 +4,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace EmailSchedulerApp.Helpers
 {
-    public class DbHelper
+    public class DbHelper(IConfiguration config)
     {
-        private readonly IConfiguration _config;
-
-        public DbHelper(IConfiguration config)
-        {
-            _config = config;
-        }
+        private readonly IConfiguration _config = config;
 
         public IDbConnection CreateConnection()
         {

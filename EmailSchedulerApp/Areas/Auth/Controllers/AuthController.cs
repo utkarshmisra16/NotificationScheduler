@@ -15,9 +15,21 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         }
 
         [HttpGet]
+        public IActionResult Index()
+        {
+            return View("index");
+        }
+
+        [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            return PartialView("_Login");;
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return PartialView("_Register");;
         }
 
         [HttpPost]
