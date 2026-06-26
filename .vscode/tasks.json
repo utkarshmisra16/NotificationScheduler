@@ -10,6 +10,19 @@
         "${workspaceFolder}/EmailSchedulerApp/EmailSchedulerApp.csproj"
       ],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/EmailSchedulerApp/EmailSchedulerApp.csproj"
+      ],
+      "isBackground": true,
+      "problemMatcher": "$msCompile"
     }
   ]
 }
