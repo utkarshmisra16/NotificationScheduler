@@ -423,7 +423,6 @@
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/i3x09wak9a-{0}-fqwjqzat6p-fqwjqzat6p.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/4olqyszmpb-{0}-b9sayid5wm-b9sayid5wm.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/z1xgrq7d0b-{0}-61n19gt1b8-61n19gt1b8.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/bkcx7tdsd8-{0}-xsu2a1h2q1-xsu2a1h2q1.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/l4ecm9t7x0-{0}-z5w1gbm3az-z5w1gbm3az.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/1khxre1wch-{0}-miqfvnedeh-miqfvnedeh.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/ffu8n1d1qw-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
@@ -499,10 +498,11 @@
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/EmailSchedulerApp.pdb
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/EmailSchedulerApp.genruntimeconfig.cache
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/ref/EmailSchedulerApp.dll
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/fe0w42dct1-{0}-ta3p1dxdox-ta3p1dxdox.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/pvzfb2g9rt-{0}-hb4pj3aqbp-hb4pj3aqbp.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/fkoer120ri-{0}-922jk4i93i-922jk4i93i.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/l1avyxgmmb-{0}-8swq5k6tw1-8swq5k6tw1.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/spafhfbzxh-{0}-0ip8yo18pi-0ip8yo18pi.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/yxtzrf5i7e-{0}-q0fi7xtwwx-q0fi7xtwwx.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/cu0vv94033-{0}-cii6yi9m49-cii6yi9m49.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/7zcb57dzb1-{0}-xsfqcp1y4i-xsfqcp1y4i.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/fe0w42dct1-{0}-aqv13avwml-aqv13avwml.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/fkoer120ri-{0}-9tntnyxhn3-9tntnyxhn3.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/bkcx7tdsd8-{0}-5ez7pre66h-5ez7pre66h.gz

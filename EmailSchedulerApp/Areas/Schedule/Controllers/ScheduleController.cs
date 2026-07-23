@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using EmailSchedulerApp.Services.Interfaces;
 using EmailSchedulerApp.DTOs.Schedule;
+using EmailSchedulerApp.ViewModels.Schedule;
 
 namespace EmailSchedulerApp.Controllers
 {
@@ -10,9 +11,13 @@ namespace EmailSchedulerApp.Controllers
         private readonly IScheduleService _scheduleService = scheduleService;
 
         [HttpGet]
-        public ActionResult CreateSchedule()
+        public async Task<ActionResult> CreateScheduleAsync()
         {
-            return View();
+            var vm = new CreateScheduleViewModel
+            {
+                Templates = await _scheduleService.GetTemplatesAsync()
+            };
+            return View(vm);
         }
 
         [HttpPost]

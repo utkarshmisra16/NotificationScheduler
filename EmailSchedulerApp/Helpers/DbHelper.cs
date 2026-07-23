@@ -10,9 +10,18 @@ namespace EmailSchedulerApp.Helpers
 
         public IDbConnection CreateConnection()
         {
-            return new SqlConnection(
-                _config.GetConnectionString("DefaultConnection")
-            );
+            var connectionString = _config.GetConnectionString("DefaultConnection");
+
+            Console.WriteLine("===== Connection String =====");
+            Console.WriteLine(connectionString);
+
+            var connection = new SqlConnection(connectionString);
+
+            connection.Open();   
+
+            Console.WriteLine("===== Database Connected Successfully =====");
+
+            return connection;
         }
     }
 }

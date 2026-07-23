@@ -26,23 +26,18 @@
             }
 
             <div class="auth-card">
-                <form method="post" id="loginForm" novalidate>
+                <div id="loginError" class="alert alert-danger d-none mb-3" role="alert"></div>
+                <form action="/Auth/Auth/Login" method="post" id="loginForm" novalidate>
                     @Html.AntiForgeryToken()
 
                     <div class="mb-3">
-                        <label for="Username" class="form-label-sm">Username</label>
+                        <label for="email" class="form-label-sm">Email</label>
                         <div class="input-icon-wrap">
                             <i class="bi bi-person input-icon"></i>
-                            <input type="text"
-                                   id="Username"
-                                   name="Username"
-                                   class="form-control"
-                                   placeholder="Enter your username"
-                                   required
-                                   autocomplete="username"
-                                   aria-label="Username" />
+                            <input type="email" id="email" name="Email" class="form-control" placeholder="Enter your email" required
+                                   autocomplete="email" aria-label="Email" />
                             <div class="invalid-feedback">
-                                Please provide a valid username.
+                                Please provide a valid email.
                             </div>
                         </div>
                     </div>

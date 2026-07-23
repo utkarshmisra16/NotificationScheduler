@@ -1,5 +1,6 @@
 using Dapper;
 using EmailSchedulerApp.DTOs.Dashboard;
+using EmailSchedulerApp.DTOs.Template;
 using EmailSchedulerApp.Helpers;
 using EmailSchedulerApp.Models;
 using EmailSchedulerApp.Repositories.Interfaces;
@@ -28,6 +29,14 @@ namespace EmailSchedulerApp.Repositories
             using IDbConnection conn = _db.CreateConnection();
             string query = @" INSERT INTO Recipients ( ScheduleId, Name, Email, Source, AddedAt ) VALUES ( @ScheduleId, @Name, @Email, @Source, @AddedAt );";
             await conn.ExecuteAsync(query, recipients);
+        }
+
+        public async Task<List<TemplateDropdownDto>> GetTemplatesAsync()
+        {
+            using var connection = _db.CreateConnection();
+            string query = @" SELECT TemplateId, TemplateName FROM EmailTemplate WHERE IsActive = 1 ORDER BY TemplateName;";
+            var result = await connection.QueryAsync<TemplateDropdownDto>(query);
+            return result.ToList();
         }
     }
 }

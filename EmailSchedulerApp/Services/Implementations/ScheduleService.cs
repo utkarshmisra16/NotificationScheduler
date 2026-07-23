@@ -2,6 +2,7 @@ using EmailSchedulerApp.DTOs.Schedule;
 using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Interfaces;
 using EmailSchedulerApp.Models;
+using EmailSchedulerApp.DTOs.Template;
 
 namespace EmailSchedulerApp.Services.Implementations
 {
@@ -43,17 +44,22 @@ namespace EmailSchedulerApp.Services.Implementations
             //     })
             //     .ToList();
 
-    // if (recipients != null && recipients.Any())
-    // {
-    //     await _scheduleRepository.SaveRecipients(recipients);
-    // }
+            // if (recipients != null && recipients.Any())
+            // {
+            //     await _scheduleRepository.SaveRecipients(recipients);
+            // }
 
-    return new CreateScheduleResponseDto
-    {
-        ScheduleId = scheduleId,
-        Success = true,
-        Message = "Schedule created successfully."
-    };
+            return new CreateScheduleResponseDto
+            {
+                ScheduleId = scheduleId,
+                Success = true,
+                Message = "Schedule created successfully."
+            };
+        }
+
+        public async Task<List<TemplateDropdownDto>> GetTemplatesAsync()
+        {
+            return await _scheduleRepository.GetTemplatesAsync();
         }
     }
 }

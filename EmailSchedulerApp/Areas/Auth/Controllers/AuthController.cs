@@ -17,6 +17,8 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            string hash = BCrypt.Net.BCrypt.HashPassword("1234");
+            Console.WriteLine(hash);
             return View("index");
         }
 
@@ -33,17 +35,20 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginRequestDto request)
         {
-            var response = _authService.Login(request);
-
-            if (response.Success)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
+                return Json(new LoginResponsedto
+                {
+                    Success = false,
+                    Message = "Please enter email and password."
+                });
             }
 
-            ViewBag.Error = response.Message;
-            return View();
+            var response = _authService.Login(request);
+            return Json(response);
         }
     }
 }

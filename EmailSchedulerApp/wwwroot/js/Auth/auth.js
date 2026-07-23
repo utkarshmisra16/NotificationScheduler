@@ -6,3 +6,32 @@ async function loadPartial(action) {
     const html = await response.text();
     document.getElementById('auth-right').innerHTML = html;
 }
+
+$(document).on("submit", "#loginForm", function (e) {
+    e.preventDefault();
+    login();
+});
+
+function login() {
+    $("#loginError").addClass("d-none").text("");
+    $.ajax({
+        url: "/Auth/Auth/Login",
+        type: "POST",
+        data: $("#loginForm").serialize(),
+        success: function (response) {
+            if (response.success) {
+                window.location.href = "/Dashboard/Dashboard/Index";
+            }
+            else {
+                $("#loginError")
+                    .removeClass("d-none")
+                    .text(response.message);
+            }
+        },
+        error: function () {
+            $("#loginError")
+                .removeClass("d-none")
+                .text("Something went wrong. Please try again.");
+        }
+    });
+}

@@ -19,8 +19,7 @@ namespace EmailSchedulerApp.Repositories.Implementations
         {
             using IDbConnection conn = _db.CreateConnection();
 
-            string query = @"SELECT u.UserId, am.PasswordHash FROM Users u JOIN UserAuthMethods am ON u.UserId = am.UserId
-                            WHERE u.Email = @Email AND am.Provider = 'EMAIL';";
+            string query = @" SELECT UserId, Email, PasswordHash, FullName, IsActive, CreatedAt FROM Users WHERE Email = @Email;";
 
             return conn.QueryFirstOrDefault<User>(query, new { Email });
         }

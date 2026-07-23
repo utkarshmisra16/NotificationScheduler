@@ -244,3 +244,12 @@ function goStep(stepNumber) {
         showStep(currentStep);
     }
 }
+
+$(document).on("change", "#stemplate", onTemplateChange);
+function onTemplateChange() {
+    if ($(this).val() === "create") {
+        window.location.href = "/Template/Template/CreateTemplate";
+        return;
+    }
+    syncReview();
+}

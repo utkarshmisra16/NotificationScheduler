@@ -1,6 +1,7 @@
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
+@model EmailSchedulerApp.ViewModels.Schedule.CreateScheduleViewModel
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <link rel="stylesheet" href="~/css/Dashboard/CreateSchedule.css" />
@@ -79,13 +80,21 @@
             <span>Email Template</span>
             <span class="required">*</span>
           </label>
-          <select class="form-control" id="stemplate" onchange="syncReview()">
+          @* <select class="form-control" id="stemplate" onchange="syncReview()">
             <option value="">Select a template</option>
             <option value="1">Template A — Welcome Email</option>
             <option value="2">Template B — Reminder</option>
             <option value="3">Template C — Weekly Digest</option>
             <option value="4">Template D — Alert</option>
             <option value="5">Create Custom</option>
+          </select> *@
+          <select class="form-control" id="stemplate" name="TemplateId">
+            <option value="">Select a template</option>
+            @foreach (var template in Model.Templates)
+            {
+                <option value="@template.TemplateId"> @template.TemplateName </option>
+            }
+            <option value="create">+ Create New Template</option>
           </select>
           <small class="form-text mt-0">Choose a pre-built template or create a custom one</small>
         </div>
