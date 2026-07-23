@@ -17,8 +17,6 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            string hash = BCrypt.Net.BCrypt.HashPassword("1234");
-            Console.WriteLine(hash);
             return View("index");
         }
 
