@@ -505,12 +505,7 @@
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/ggdpqhy9k7-{0}-jsceg09bov-jsceg09bov.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/19q4py92cz-{0}-z604wxahzl-z604wxahzl.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/z55fcao9p5-{0}-qic6aq3331-qic6aq3331.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/DevExtreme.AspNet.Data.dll
-/workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/DevExpress.Data.v26.1.dll
-/workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/DevExtreme.AspNet.Core.dll
-/workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/Microsoft.Win32.SystemEvents.dll
-/workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/System.Drawing.Common.dll
-/workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/agtk47odhx-{0}-bkr6wkjn81-bkr6wkjn81.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/mvy3fje3fa-{0}-ohgc2djo6e-ohgc2djo6e.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/llr28asct6-{0}-tub2m1fl2c-tub2m1fl2c.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/llr28asct6-{0}-uha3q3wsqy-uha3q3wsqy.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/h4y7ye19um-{0}-y4kfl1wa7f-y4kfl1wa7f.gz

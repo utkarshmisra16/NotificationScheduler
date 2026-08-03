@@ -4,6 +4,6 @@ namespace EmailSchedulerApp.Services.Interfaces
     public interface ITemplateService
     {
         Task<CreateTemplateResponseDto> SaveTemplate(CreateTemplateRequestDto request);
-        List<ViewTemplateDto> GetTemplates();
+        Task<TemplatePaginationDto> GetTemplatesAsync(int page, int pageSize);
     }
 }

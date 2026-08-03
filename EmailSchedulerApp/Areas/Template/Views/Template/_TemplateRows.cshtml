@@ -1,0 +1,76 @@
+
+@model EmailSchedulerApp.DTOs.Template.TemplatePaginationDto
+
+@foreach (EmailSchedulerApp.DTOs.Template.ViewTemplateDto template in Model.Templates)
+{
+    <tr>
+        <td>
+            <div class="template-cell">
+
+                <div class="template-avatar">
+                    <i class="fa fa-envelope-o"></i>
+                </div>
+
+                <div>
+                    <div class="template-name">
+                        @template.TemplateName
+                    </div>
+                </div>
+
+            </div>
+        </td>
+
+        <td>
+            <span class="template-subject">
+                @template.Subject
+            </span>
+        </td>
+
+        <td>
+            <span class="template-user">
+                @template.CreatedBy
+            </span>
+        </td>
+
+        <td>
+            <span class="template-date">
+                @template.CreatedOn.ToString("dd MMM yyyy")
+            </span>
+        </td>
+
+        <td>
+            @if (template.IsActive)
+            {
+                <span class="template-status active">
+                    <span></span>
+                    Active
+                </span>
+            }
+            else
+            {
+                <span class="template-status inactive">
+                    <span></span>
+                    Inactive
+                </span>
+            }
+        </td>
+
+        <td>
+            <div class="template-actions">
+
+                <button type="button" title="View">
+                    <i class="fa fa-eye"></i>
+                </button>
+
+                <button type="button" title="Edit">
+                    <i class="fa fa-pencil"></i>
+                </button>
+
+                <button type="button" title="More">
+                    <i class="fa fa-ellipsis-v"></i>
+                </button>
+
+            </div>
+        </td>
+    </tr>
+}

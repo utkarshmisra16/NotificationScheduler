@@ -15,11 +15,23 @@ namespace EmailSchedulerApp.Repositories.Implementations
             return rowsAffected > 0;
         }
 
-        public List<ViewTemplateDto> GetTemplates()
+        public async Task<List<ViewTemplateDto>> GetTemplatesAsync( int page, int pageSize)
         {
-            string query = "Select TemplateName, Subject, Body, IsActive, CreatedOn from EmailTemplate";
+            const string query = @"
+                SELECT TemplateId, TemplateName, Subject, CreatedBy, CreatedOn, IsActive FROM EmailTemplate ORDER BY CreatedOn DESC OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;";
+            int offset = (page - 1) * pageSize;
             using var connection = _dbHelper.CreateConnection();
-            return connection.Query<ViewTemplateDto>(query).ToList();
+            var result = await connection.QueryAsync<ViewTemplateDto>(
+                query,new{ Offset = offset, PageSize = pageSize });
+            return result.ToList();
+        }
+
+        public async Task<int> GetTemplatesCountAsync()
+        {
+            const string query = "SELECT COUNT(TemplateId) FROM EmailTemplate";
+            using var connection = _dbHelper.CreateConnection();
+            int count = await connection.ExecuteScalarAsync<int>(query);
+            return count;
         }
     }
 }

@@ -47,5 +47,11 @@ namespace EmailSchedulerApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetTemplates(int page = 1, int pageSize = 20)
+        {
+            var templates = await _templateService.GetTemplatesAsync(page, pageSize);
+            return PartialView("_TemplateRows", templates);
+        }
     }
 }

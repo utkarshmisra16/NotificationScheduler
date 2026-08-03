@@ -28,9 +28,17 @@ namespace EmailSchedulerApp.Services.Implementations
             };
         }
 
-        public List<ViewTemplateDto> GetTemplates()
+        public async Task<TemplatePaginationDto> GetTemplatesAsync(int page, int pageSize)
         {
-            return _repository.GetTemplates();
+            var templates = await _repository.GetTemplatesAsync(page, pageSize);
+            int totalRecords = await _repository.GetTemplatesCountAsync();
+            return new TemplatePaginationDto
+            {
+                Page = page,
+                PageSize = pageSize,
+                TotalRecords = totalRecords,
+                Templates = templates
+            };
         }
     }
 }
