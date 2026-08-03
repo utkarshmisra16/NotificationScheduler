@@ -1,6 +1,10 @@
 using EmailSchedulerApp.DTOs;
 using EmailSchedulerApp.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace EmailSchedulerApp.Areas.Auth.Controllers
 {
@@ -33,8 +37,9 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public IActionResult Login(LoginRequestDto request)
+        public async Task<IActionResult> Login(LoginRequestDto request)
         {
             if (!ModelState.IsValid)
             {
@@ -46,7 +51,39 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
             }
 
             var response = _authService.Login(request);
+
+            if (!response.Success)
+            {
+                return Json(response);
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, request.Email)
+            };
+
+            var identity = new ClaimsIdentity(
+                claims,
+                CookieAuthenticationDefaults.AuthenticationScheme
+            );
+
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                principal
+            );
+
             return Json(response);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync( CookieAuthenticationDefaults.AuthenticationScheme );
+            return Json(new { Success = true });
         }
     }
 }

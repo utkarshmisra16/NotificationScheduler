@@ -1,4 +1,5 @@
 using Dapper;
+using EmailSchedulerApp.DTOs.Template;
 using EmailSchedulerApp.Helpers;
 using EmailSchedulerApp.Repositories.Interfaces;
 namespace EmailSchedulerApp.Repositories.Implementations
@@ -12,6 +13,13 @@ namespace EmailSchedulerApp.Repositories.Implementations
             using var connection = _dbHelper.CreateConnection();
             int rowsAffected = await connection.ExecuteAsync(query, template);
             return rowsAffected > 0;
+        }
+
+        public List<ViewTemplateDto> GetTemplates()
+        {
+            string query = "Select TemplateName, Subject, Body, IsActive, CreatedOn from EmailTemplate";
+            using var connection = _dbHelper.CreateConnection();
+            return connection.Query<ViewTemplateDto>(query).ToList();
         }
     }
 }

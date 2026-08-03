@@ -58,8 +58,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvU2NoZWR1bGUvVmlld3MvU2NoZWR1bGUvQ3JlYXRlU2NoZWR1bGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/NotificationScheduler/EmailSchedulerApp/Areas/Schedule/Views/Schedule/ViewSchedules.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvU2NoZWR1bGUvVmlld3MvU2NoZWR1bGUvVmlld1NjaGVkdWxlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/NotificationScheduler/EmailSchedulerApp/Areas/Template/Views/Template/CreateTemplate.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvVGVtcGxhdGUvVmlld3MvVGVtcGxhdGUvQ3JlYXRlVGVtcGxhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/NotificationScheduler/EmailSchedulerApp/Areas/Template/Views/Template/ViewTemplates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvVGVtcGxhdGUvVmlld3MvVGVtcGxhdGUvVmlld1RlbXBsYXRlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/workspaces/NotificationScheduler/EmailSchedulerApp/Views/Dashboard/CreateSchedule.cshtml]
@@ -72,6 +80,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/workspaces/NotificationScheduler/EmailSchedulerApp/Views/Shared/_DashboardLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19EYXNoYm9hcmRMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/NotificationScheduler/EmailSchedulerApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/workspaces/NotificationScheduler/EmailSchedulerApp/Views/Shared/_SideBar.cshtml]
@@ -89,7 +101,3 @@ build_metadata.AdditionalFiles.CssScope =
 [/workspaces/NotificationScheduler/EmailSchedulerApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[/workspaces/NotificationScheduler/EmailSchedulerApp/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-3s8hyv58v1

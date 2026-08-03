@@ -27,5 +27,10 @@ namespace EmailSchedulerApp.Services.Implementations
                 Message = isSaved ? "Template saved successfully." : "Failed to save template."
             };
         }
+
+        public List<ViewTemplateDto> GetTemplates()
+        {
+            return _repository.GetTemplates();
+        }
     }
 }

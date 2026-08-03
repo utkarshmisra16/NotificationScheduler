@@ -5,6 +5,6 @@ namespace EmailSchedulerApp.Repositories.Interfaces
     public interface ITemplateRepository
     {
         Task<bool> SaveTemplate(Template template);
-        
+        List<ViewTemplateDto> GetTemplates();
     }
 }

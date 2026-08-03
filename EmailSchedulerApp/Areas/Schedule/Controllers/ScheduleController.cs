@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using EmailSchedulerApp.Services.Interfaces;
 using EmailSchedulerApp.DTOs.Schedule;
 using EmailSchedulerApp.ViewModels.Schedule;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmailSchedulerApp.Controllers
 {
     [Area("Schedule")]
+    [Authorize]
     public class ScheduleController(IScheduleService scheduleService) : Controller
     {
         private readonly IScheduleService _scheduleService = scheduleService;
@@ -33,6 +35,11 @@ namespace EmailSchedulerApp.Controllers
             }
             CreateScheduleResponseDto response = await _scheduleService.SaveSchedule(request);
             return Json(response);
+        }
+
+        public IActionResult ViewSchedules()
+        {
+            return View();
         }
     }
 }

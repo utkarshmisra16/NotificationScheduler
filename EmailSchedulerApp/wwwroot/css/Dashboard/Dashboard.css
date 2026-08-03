@@ -96,11 +96,10 @@
         background: #fff;
         border-radius: 14px;
         border: 1px solid #e2e8f0;
-        padding: 20px;
+        padding: 12px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
         transition: box-shadow 0.2s, transform 0.2s;
     }
 

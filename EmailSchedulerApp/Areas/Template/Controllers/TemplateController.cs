@@ -1,14 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using EmailSchedulerApp.Services.Interfaces;
 using EmailSchedulerApp.DTOs.Template;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmailSchedulerApp.Controllers
 {
     [Area("Template")]
+    [Authorize]
     public class TemplateController(ITemplateService templateService) : Controller
     {
         private readonly ITemplateService _templateService = templateService;
-
+        
         public async Task<IActionResult> Index()
         {
             string hash = BCrypt.Net.BCrypt.HashPassword("1234");
@@ -39,5 +41,11 @@ namespace EmailSchedulerApp.Controllers
 
             return Json(response);
         }
+
+        public IActionResult ViewTemplates()
+        {
+            return View();
+        }
+
     }
 }
