@@ -23,5 +23,5 @@ namespace EmailSchedulerApp.Helpers
 
             return connection;
         }
-    }
+    }                
 }

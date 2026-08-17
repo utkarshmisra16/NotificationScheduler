@@ -47,3 +47,30 @@ function togglePasswordVisibility(button) {
     icon.className = isPassword ? 'bi bi-eye-slash' : 'bi bi-eye';
     button.setAttribute('aria-pressed', isPassword.toString());
 }
+
+$(document).on("submit", "#forgotPasswordForm", function (e) {
+    e.preventDefault();
+    const email = $("#forgotEmail").val();
+    // AJAX call
+     const form = $(this);
+    $.ajax({
+        url: "/Auth/Auth/ForgotPassword",
+        type: "POST",
+        data: form.serialize(),
+        success: function (response) {
+            if (response.success) {
+                $("#forgotPasswordError").addClass("d-none").text("");
+                $("#forgotPasswordSuccess").removeClass("d-none").text(response.message);
+                $("#forgotEmail").val("");
+            }
+            else {
+                $("#forgotPasswordSuccess").addClass("d-none").text("");
+                $("#forgotPasswordError").removeClass("d-none").text(response.message);
+            }
+        },
+
+        error: function () {
+            $("#forgotPasswordError").removeClass("d-none").text("Something went wrong. Please try again.");
+        }
+    });
+});

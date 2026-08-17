@@ -15,7 +15,7 @@ namespace EmailSchedulerApp.Services.Implementations
             var schedule = new Schedule
             {
                 TemplateId = request.TemplateId,
-                Name = request.Name,
+                Name = request.Name ?? string.Empty,
                 Channel = request.Channel,
                 Description = request.Description,
                 Frequency = (int)request.Frequency,

@@ -314,3 +314,25 @@ body {
 #AcceptTerms{
     cursor: pointer;
 }
+
+#rememberMe{
+    cursor: pointer;
+}
+
+.input-icon-wrap {
+    position: relative;
+}
+
+.input-icon-wrap .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    color: rgb(71, 117, 200) !important;
+    pointer-events: none;
+}
+
+.input-icon-wrap .form-control {
+    padding-left: 42px;
+}

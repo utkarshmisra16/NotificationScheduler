@@ -14,10 +14,12 @@ $(document).on("submit", "#loginForm", function (e) {
 
 function login() {
     $("#loginError").addClass("d-none").text("");
+    let data = $("#loginForm").serialize();
+    console.log("Form Data:", data);
     $.ajax({
         url: "/Auth/Auth/Login",
         type: "POST",
-        data: $("#loginForm").serialize(),
+        data: data,
         success: function (response) {
             if (response.success) {
                 window.location.href = "/Dashboard/Dashboard/Index";

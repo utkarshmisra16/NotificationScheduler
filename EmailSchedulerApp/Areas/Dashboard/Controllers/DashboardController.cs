@@ -12,8 +12,9 @@ namespace EmailSchedulerApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            Console.WriteLine("========== DASHBOARD INDEX HIT ==========");
             var data = await _dashboardService.GetDashboardAsync();
-
+            Console.WriteLine("========== DASHBOARD DATA LOADED ==========");
             return View(data);
         }
     }

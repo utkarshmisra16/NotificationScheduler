@@ -13,28 +13,16 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
     {
         private readonly IAuthService _authService;
 
-        public AuthController(IAuthService authService)
-        {
-            _authService = authService;
-        }
+        public AuthController(IAuthService authService) => _authService = authService;
 
         [HttpGet]
-        public IActionResult Index()
-        {
-            return View("index");
-        }
+        public IActionResult Index() => View("index");
 
         [HttpGet]
-        public IActionResult Login()
-        {
-            return PartialView("_Login");;
-        }
+        public IActionResult Login() => PartialView("_Login");
 
         [HttpGet]
-        public IActionResult Register()
-        {
-            return PartialView("_Register");;
-        }
+        public IActionResult Register() => PartialView("_Register");
 
         [HttpPost]
         [AllowAnonymous]
@@ -43,37 +31,22 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json(new LoginResponsedto
-                {
+                return Json(new LoginResponsedto {
                     Success = false,
                     Message = "Please enter email and password."
                 });
             }
-
             var response = _authService.Login(request);
-
             if (!response.Success)
-            {
                 return Json(response);
-            }
-
             var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, request.Email)
-            };
-
-            var identity = new ClaimsIdentity(
-                claims,
-                CookieAuthenticationDefaults.AuthenticationScheme
-            );
-
+                { new(ClaimTypes.Name, request.Email ?? string.Empty) };
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
-
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                principal
-            );
-
+            var authProperties = new AuthenticationProperties{
+                IsPersistent = request.RememberMe
+            };
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
             return Json(response);
         }
 
@@ -84,6 +57,19 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         {
             await HttpContext.SignOutAsync( CookieAuthenticationDefaults.AuthenticationScheme );
             return Json(new { Success = true });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgotPassword(string email)
+        {
+            // Temporary testing
+            return Json(new
+            {
+                Success = true,
+                Message = "If an account exists with this email, a reset link has been sent."
+            });
         }
     }
 }

@@ -1,0 +1,21 @@
+CREATE TABLE [dbo].[Schedules] (
+    [ScheduleId] int IDENTITY(1,1) NOT NULL,
+    [TemplateId] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [Channel] nvarchar(50) NOT NULL,
+    [Description] nvarchar(500) NULL,
+    [StartDate] date NOT NULL,
+    [StartTime] time(7) NOT NULL,
+    [Timezone] nvarchar(50) NOT NULL,
+    [Frequency] int NOT NULL,
+    [WeekDays] nvarchar(100) NULL,
+    [CronExpression] nvarchar(200) NULL,
+    [EndDate] date NULL,
+    [Tags] nvarchar(500) NULL,
+    [Priority] int NOT NULL DEFAULT ((1)),
+    [IsActive] bit NOT NULL DEFAULT ((1)),
+    [CreatedOn] datetime2(7) NOT NULL DEFAULT (getdate()),
+    [UpdatedOn] datetime2(7) NULL,
+    [CreatedBy] nvarchar(100) NULL,
+    CONSTRAINT [PK_Schedules] PRIMARY KEY ([ScheduleId])
+);

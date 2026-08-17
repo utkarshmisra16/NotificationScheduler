@@ -2,7 +2,6 @@ using EmailSchedulerApp.DTOs;
 using EmailSchedulerApp.Models;
 using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Interfaces;
-using BCrypt.Net;
 
 public class AuthService : IAuthService
 {
