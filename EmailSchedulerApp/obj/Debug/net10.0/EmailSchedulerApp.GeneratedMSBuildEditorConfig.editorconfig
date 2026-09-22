@@ -26,6 +26,10 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQXV0aC9WaWV3cy9BdXRoL2luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/NotificationScheduler/EmailSchedulerApp/Areas/Auth/Views/Auth/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQXV0aC9WaWV3cy9BdXRoL1Jlc2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/NotificationScheduler/EmailSchedulerApp/Areas/Auth/Views/Auth/_Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQXV0aC9WaWV3cy9BdXRoL19Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

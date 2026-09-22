@@ -5,6 +5,8 @@ namespace EmailSchedulerApp.Services.Interfaces
     public interface IAuthService
     {
         LoginResponsedto Login(LoginRequestDto request);
-        // bool ForgotPassword(string email);
+        LoginResponsedto Register(RegisterRequestDto request);
+        Task<bool> ForgotPassword(string email, string baseUrl);
+        bool ResetPassword(string token, string newPassword);
     }
 }

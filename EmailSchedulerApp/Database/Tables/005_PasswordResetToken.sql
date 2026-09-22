@@ -4,7 +4,7 @@ CREATE TABLE [dbo].[PasswordResetToken]
     [UserId] INT NOT NULL,
     [TokenHash] NVARCHAR(256) NOT NULL,
     [ExpiresAt] DATETIME2(7) NOT NULL,
-    [UsedAt] DATETIME2(7) NULL,
+    [IsUsed] BIT NOT NULL DEFAULT 0,
     [CreatedAt] DATETIME2(7) NOT NULL DEFAULT (GETDATE()),
 
     CONSTRAINT [PK_PasswordResetToken]

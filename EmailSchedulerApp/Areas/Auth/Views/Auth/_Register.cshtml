@@ -25,7 +25,7 @@
         }
 
         <div class="auth-card">
-
+            <div id="registerError" class="alert alert-danger d-none mb-3" role="alert"></div>
             <form method="post" id="registerForm" novalidate>
                 @Html.AntiForgeryToken()
 
@@ -135,6 +135,8 @@
                     <input class="form-check-input"
                            type="checkbox"
                            id="AcceptTerms"
+                           name="AcceptTerms"
+                           value="true"
                            required />
 
                     <label class="form-check-label" for="AcceptTerms">
