@@ -19,10 +19,13 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore
-        run: dotnet restore ./EmailSchedulerApp/EmailSchedulerApp.csproj
+        run: dotnet restore ./EmailSchedulerApp.Tests/EmailSchedulerApp.Tests.csproj
 
       - name: Build
-        run: dotnet build ./EmailSchedulerApp/EmailSchedulerApp.csproj --no-restore
+        run: dotnet build ./EmailSchedulerApp.Tests/EmailSchedulerApp.Tests.csproj --no-restore
+
+      - name: Test
+        run: dotnet test ./EmailSchedulerApp.Tests/EmailSchedulerApp.Tests.csproj --no-build
