@@ -17,8 +17,7 @@ namespace EmailSchedulerApp.Repositories.Implementations
 
         public async Task<List<ViewTemplateDto>> GetTemplatesAsync( int page, int pageSize)
         {
-            const string query = @"
-                SELECT TemplateId, TemplateName, Subject, CreatedBy, CreatedOn, IsActive FROM EmailTemplate ORDER BY CreatedOn DESC OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;";
+            const string query = "SELECT TemplateId, TemplateName, Subject, CreatedBy, CreatedOn, IsActive FROM EmailTemplate ORDER BY CreatedOn DESC OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;";
             int offset = (page - 1) * pageSize;
             using var connection = _dbHelper.CreateConnection();
             var result = await connection.QueryAsync<ViewTemplateDto>(

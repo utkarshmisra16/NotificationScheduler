@@ -28,18 +28,12 @@ namespace EmailSchedulerApp.Controllers
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Where(x => x.Value?.Errors.Count > 0).Select(x => new { Field = x.Key, Errors = x.Value?.Errors.Select(e => e.ErrorMessage) }).ToList();
-                return Json(new CreateScheduleResponseDto{
-                    Success = false,
-                    Message = "Validation failed."
-                });
+                return Json(new CreateScheduleResponseDto{ Success = false, Message = "Validation failed." });
             }
             CreateScheduleResponseDto response = await _scheduleService.SaveSchedule(request);
             return Json(response);
         }
 
-        public IActionResult ViewSchedules()
-        {
-            return View();
-        }
+        public IActionResult ViewSchedules() => View();
     }
 }

@@ -19,33 +19,18 @@ namespace EmailSchedulerApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateTemplate()
-        {
-            return View();
-        }
+        public ActionResult CreateTemplate() => View();
 
         [HttpPost]
         public async Task<IActionResult> CreateTemplate(CreateTemplateRequestDto request)
         {
             if (!ModelState.IsValid)
-            {
-                return Json(new CreateTemplateResponseDto
-                {
-                    Success = false,
-                    Message = "Validation failed."
-                });
-            }
-
-            CreateTemplateResponseDto response =
-                await _templateService.SaveTemplate(request);
-
+                return Json(new CreateTemplateResponseDto{ Success = false, Message = "Validation failed." });
+            CreateTemplateResponseDto response = await _templateService.SaveTemplate(request);
             return Json(response);
         }
 
-        public IActionResult ViewTemplates()
-        {
-            return View();
-        }
+        public IActionResult ViewTemplates() => View();
 
         [HttpGet]
         public async Task<IActionResult> GetTemplates(int page = 1, int pageSize = 20)

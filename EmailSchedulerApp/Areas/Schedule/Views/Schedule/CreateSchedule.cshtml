@@ -1,4 +1,5 @@
 @{
+    ViewBag.Title = "QueueIt | Create Schedule";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 @model EmailSchedulerApp.ViewModels.Schedule.CreateScheduleViewModel
@@ -6,13 +7,18 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <link rel="stylesheet" href="~/css/Dashboard/CreateSchedule.css" />
 
-<div class="create-schedule-container pt-">
-  
-  <!-- Header -->
+<div class="create-schedule-container">
   <div class="border-bottom mb-2">
-    <div class="header-content">
-      <h4><i class="ti ti-calendar-event"></i> Create Schedule</h4>
-      <p>Set up a new notification schedule with custom frequency and recipients</p>
+    <div class="header-content d-flex justify-content-between align-items-start mb-4">
+      <div>
+          <h5 class="mb-0 fw-bold"><i class="ti ti-calendar-event"></i> Create Schedule</h4>
+          <p>Set up a new notification schedule with custom frequency and recipients</p>
+        </div>
+        <nav style="font-size:12px;color:#94a3b8;">
+          <a href="/Dashboard/Dashboard/Index" style="color:#4f6ef7;text-decoration:none;">Dashboard</a>
+          <span class="mx-1">/</span>
+          <span style="color:#374151;font-weight:600;">Create Schedule</span>
+        </nav>
     </div>
     <div class="progress-indicator mb-2">
       <div class="progress-step active" id="step-indicator-1">

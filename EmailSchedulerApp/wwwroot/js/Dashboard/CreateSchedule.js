@@ -3,6 +3,7 @@ let currentStep = 1;
 document.addEventListener("DOMContentLoaded", () => {
     initializeForm();
     showStep(currentStep);
+    $('#currentPage').text("Create Schedule");
 });
 
 function initializeForm() {
@@ -231,7 +232,7 @@ async function submitSchedule() {
     const result = await response.json();
 
     if (result.success) {
-        window.location.href = "/Dashboard";
+        window.location.href = "/Dashboard/Dashboard/Index";
     }
     else {
         alert(result.message);

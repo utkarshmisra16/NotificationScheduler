@@ -5,16 +5,10 @@ using EmailSchedulerApp.Models;
 using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Interfaces;
 
-public class AuthService : IAuthService
+public class AuthService(IUserRepository userRepository, IEmailService emailService) : IAuthService
 {
-    private readonly IUserRepository _userRepository;
-    private readonly IEmailService _emailService;
-
-    public AuthService(IUserRepository userRepository, IEmailService emailService)
-    {
-        _userRepository = userRepository;
-        _emailService = emailService;
-    }
+    private readonly IUserRepository _userRepository = userRepository;
+    private readonly IEmailService _emailService = emailService;
 
     public LoginResponsedto Login(LoginRequestDto request)
     {

@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using EmailSchedulerApp.Enums;
-using System.Collections.Generic;
  
 namespace EmailSchedulerApp.DTOs.Schedule
 {
@@ -40,7 +39,7 @@ namespace EmailSchedulerApp.DTOs.Schedule
  
         [Required(ErrorMessage = "At least one recipient email is required.")]
         [MinLength(1, ErrorMessage = "At least one recipient email is required.")]
-        public List<string> RecipientEmails { get; set; } = new();
+        public List<string> RecipientEmails { get; set; } = [];
  
         public string? Tags { get; set; }
  

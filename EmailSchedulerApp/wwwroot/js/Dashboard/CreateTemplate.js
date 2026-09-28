@@ -3,6 +3,7 @@ let selectedFiles = [];
 let dropZone, fileInput, fileList;
 
 $(document).ready(function () {
+    $('#currentPage').text("Create Template");
     $("#createBtn").click(saveTemplate);
     quill = new Quill('#quill-editor', {
         theme: 'snow',

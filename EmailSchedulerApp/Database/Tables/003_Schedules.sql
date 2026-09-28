@@ -17,5 +17,6 @@ CREATE TABLE [dbo].[Schedules] (
     [CreatedOn] datetime2(7) NOT NULL DEFAULT (getdate()),
     [UpdatedOn] datetime2(7) NULL,
     [CreatedBy] nvarchar(100) NULL,
+    [Recipients] NVARCHAR(MAX) NULL;
     CONSTRAINT [PK_Schedules] PRIMARY KEY ([ScheduleId])
 );

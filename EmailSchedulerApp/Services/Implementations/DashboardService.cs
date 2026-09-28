@@ -1,3 +1,4 @@
+using System.Text.Json;
 using EmailSchedulerApp.Enums;
 using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Interfaces;
@@ -9,24 +10,53 @@ namespace EmailSchedulerApp.Services.Implementation
     {
         private readonly IDashboardRepository _repository = repository;
 
-        // public async Task<DashboardDto> GetDashboardDataAsync()
-        // {
-        //     return await _repository.GetDashboardDataAsync();
-        // }
-
         public async Task<DashboardViewModel> GetDashboardAsync()
         {
             var recentSchedules = await _repository.GetRecentSchedulesAsync();
+
             return new DashboardViewModel
             {
                 RecentEmails = recentSchedules
-                    .Select(x => new RecentEmailViewModel
+                    .Select(x =>
                     {
-                        ScheduleId = x.ScheduleId,
-                        Subject = x.Name,
-                        Recipients = x.RecipientCount,
-                        ScheduledTime = $"{x.StartDate:dd MMM yyyy} {x.StartTime}",
-                        Status = x.IsActive ? EmailStatus.Pending : EmailStatus.Sent
+                        List<string> recipients = [];
+
+                        if (!string.IsNullOrWhiteSpace(x.Recipients))
+                        {
+                            try
+                            {
+                                recipients = JsonSerializer.Deserialize<List<string>>(x.Recipients) ?? [];
+                            }
+                            catch (JsonException)
+                            {
+                                recipients = [];
+                            }
+                        }
+
+                        return new RecentEmailViewModel
+                        {
+                            ScheduleId = x.ScheduleId,
+                            Subject = x.Name,
+
+                            // Recipient count
+                            Recipients = x.RecipientCount,
+
+                            // Recipient email list for Bootstrap Popover
+                            RecipientList = string.Join(
+                                "",
+                                recipients.Select(email =>
+                                    $"<div class='mb-1'>" +
+                                    $"<i class='bi bi-envelope me-2'></i>{email}" +
+                                    $"</div>")
+                            ),
+
+                            ScheduledTime =
+                                $"{x.StartDate:dd MMM yyyy} {x.StartTime}",
+
+                            Status = x.IsActive
+                                ? EmailStatus.Pending
+                                : EmailStatus.Sent
+                        };
                     })
                     .ToList()
             };

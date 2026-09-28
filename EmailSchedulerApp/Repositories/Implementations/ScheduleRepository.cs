@@ -8,33 +8,28 @@ using System.Data;
 
 namespace EmailSchedulerApp.Repositories
 {
-    public class ScheduleRepository : IScheduleRepository
+    public class ScheduleRepository(DbHelper db) : IScheduleRepository
     {
-        private readonly DbHelper _db;
-
-        public ScheduleRepository(DbHelper db)
-        {
-            _db = db;
-        }
+        private readonly DbHelper _db = db;
 
         public async Task<int> SaveSchedule(Schedule schedule)
         {
-            using IDbConnection conn = _db.CreateConnection();
-            string query = @" INSERT INTO Schedules ( TemplateId, StartDate, EndDate, IsActive, CreatedOn, Name, Channel, Description, StartTime, Timezone, Frequency, WeekDays, CronExpression, Tags, Priority, UpdatedOn, CreatedBy ) VALUES ( @TemplateId, @StartDate, @EndDate, @IsActive, @CreatedOn, @Name, @Channel, @Description, @StartTime, @Timezone, @Frequency, @WeekDays, @CronExpression, @Tags, @Priority, @UpdatedOn, @CreatedBy ); SELECT CAST(SCOPE_IDENTITY() AS INT);";
-            return await conn.ExecuteScalarAsync<int>(query, schedule);
+            using var connection = _db.CreateConnection();
+            string query = "INSERT INTO Schedules ( TemplateId, StartDate, EndDate, IsActive, CreatedOn, Name, Channel, Description, StartTime, Timezone, Frequency, WeekDays, CronExpression, Tags, Priority, UpdatedOn, CreatedBy, Recipients ) VALUES ( @TemplateId, @StartDate, @EndDate, @IsActive, @CreatedOn, @Name, @Channel, @Description, @StartTime, @Timezone, @Frequency, @WeekDays, @CronExpression, @Tags, @Priority, @UpdatedOn, @CreatedBy, @Recipients ); SELECT CAST(SCOPE_IDENTITY() AS INT);";
+            return await connection.ExecuteScalarAsync<int>(query, schedule);
         }
 
         public async Task SaveRecipients(List<Recipient> recipients)
         {
-            using IDbConnection conn = _db.CreateConnection();
-            string query = @" INSERT INTO Recipients ( ScheduleId, Name, Email, Source, AddedAt ) VALUES ( @ScheduleId, @Name, @Email, @Source, @AddedAt );";
-            await conn.ExecuteAsync(query, recipients);
+            using var connection = _db.CreateConnection();
+            string query = "INSERT INTO Recipients ( ScheduleId, Name, Email, Source, AddedAt ) VALUES ( @ScheduleId, @Name, @Email, @Source, @AddedAt );";
+            await connection.ExecuteAsync(query, recipients);
         }
 
         public async Task<List<TemplateDropdownDto>> GetTemplatesAsync()
         {
             using var connection = _db.CreateConnection();
-            string query = @" SELECT TemplateId, TemplateName FROM EmailTemplate WHERE IsActive = 1 ORDER BY TemplateName;";
+            string query = "SELECT TemplateId, TemplateName FROM EmailTemplate WHERE IsActive = 1 ORDER BY TemplateName;";
             var result = await connection.QueryAsync<TemplateDropdownDto>(query);
             return result.ToList();
         }

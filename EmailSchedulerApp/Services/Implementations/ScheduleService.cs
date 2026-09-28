@@ -3,6 +3,7 @@ using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Interfaces;
 using EmailSchedulerApp.Models;
 using EmailSchedulerApp.DTOs.Template;
+using System.Text.Json;
 
 namespace EmailSchedulerApp.Services.Implementations
 {
@@ -28,27 +29,10 @@ namespace EmailSchedulerApp.Services.Implementations
                 Tags = request.Tags,
                 Priority = (int)request.Priority,
                 IsActive = true,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow,
+                Recipients = JsonSerializer.Serialize(request.RecipientEmails)
             };
             int scheduleId = await _scheduleRepository.SaveSchedule(schedule);
-
-            // var recipients = request.CustomEmails?
-            //     .Split([',', '\n', '\r'], StringSplitOptions.RemoveEmptyEntries)
-            //     .Select(email => new Recipient
-            //     {
-            //         ScheduleId = scheduleId,
-            //         Name = null,
-            //         Email = email.Trim(),
-            //         Source = "MANUAL",
-            //         AddedAt = DateTime.UtcNow
-            //     })
-            //     .ToList();
-
-            // if (recipients != null && recipients.Any())
-            // {
-            //     await _scheduleRepository.SaveRecipients(recipients);
-            // }
-
             return new CreateScheduleResponseDto
             {
                 ScheduleId = scheduleId,

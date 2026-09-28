@@ -1,4 +1,3 @@
-/workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/appsettings.Development.json
 /workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/appsettings.json
 /workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/EmailSchedulerApp.staticwebassets.runtime.json
 /workspaces/NotificationScheduler/EmailSchedulerApp/bin/Debug/net10.0/EmailSchedulerApp.staticwebassets.endpoints.json
@@ -415,7 +414,6 @@
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/rjsmrazor.dswa.cache.json
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/rjsmcshtml.dswa.cache.json
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/scopedcss/bundle/EmailSchedulerApp.styles.css
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/ie8pydmnu9-{0}-fq9ri1araq-fq9ri1araq.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/c20crvxb4z-{0}-42z5mm77nx-42z5mm77nx.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/i3x09wak9a-{0}-fqwjqzat6p-fqwjqzat6p.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/4olqyszmpb-{0}-b9sayid5wm-b9sayid5wm.gz
@@ -425,9 +423,6 @@
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/cu0vv94033-{0}-cii6yi9m49-cii6yi9m49.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/oldkhw5v8x-{0}-bo5k5h8wcx-bo5k5h8wcx.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/l1avyxgmmb-{0}-8swq5k6tw1-8swq5k6tw1.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/bkcx7tdsd8-{0}-5ez7pre66h-5ez7pre66h.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/l4ecm9t7x0-{0}-z5w1gbm3az-z5w1gbm3az.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/1khxre1wch-{0}-miqfvnedeh-miqfvnedeh.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/ffu8n1d1qw-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/kutvfdr847-{0}-bqjiyaj88i-bqjiyaj88i.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/mnlyrweyws-{0}-c2jlpeoesf-c2jlpeoesf.gz
@@ -505,7 +500,12 @@
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/agtk47odhx-{0}-bkr6wkjn81-bkr6wkjn81.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/mvy3fje3fa-{0}-ohgc2djo6e-ohgc2djo6e.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/llr28asct6-{0}-uha3q3wsqy-uha3q3wsqy.gz
-/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/h4y7ye19um-{0}-y4kfl1wa7f-y4kfl1wa7f.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/7zcb57dzb1-{0}-r9c1zokoox-r9c1zokoox.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/pvzfb2g9rt-{0}-q2ahvfximq-q2ahvfximq.gz
 /workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/fkoer120ri-{0}-jzvp38jpxj-jzvp38jpxj.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/ie8pydmnu9-{0}-k7yd0ph9pb-k7yd0ph9pb.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/bkcx7tdsd8-{0}-mepg8hdq20-mepg8hdq20.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/l4ecm9t7x0-{0}-2yc4mt8774-2yc4mt8774.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/bjcjrpo2pu-{0}-miqfvnedeh-miqfvnedeh.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/1khxre1wch-{0}-8g9vz1kybi-8g9vz1kybi.gz
+/workspaces/NotificationScheduler/EmailSchedulerApp/obj/Debug/net10.0/compressed/h4y7ye19um-{0}-5l3wdczygk-5l3wdczygk.gz

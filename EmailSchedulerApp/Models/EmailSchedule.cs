@@ -23,5 +23,6 @@ namespace EmailSchedulerApp.Models
         public int Priority { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public string CreatedBy { get; set; } = string.Empty;
+        public required string Recipients {get; set;}
     }
 }

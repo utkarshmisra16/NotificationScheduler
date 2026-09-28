@@ -6,6 +6,6 @@ namespace EmailSchedulerApp.DTOs.Template
         public int PageSize { get; set; }
         public int TotalRecords { get; set; }
 
-        public List<ViewTemplateDto> Templates { get; set; } = new();
+        public List<ViewTemplateDto> Templates { get; set; } = [];
     }
 }

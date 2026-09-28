@@ -10,11 +10,9 @@ using EmailSchedulerApp.ViewModels;
 namespace EmailSchedulerApp.Areas.Auth.Controllers
 {
     [Area("Auth")]
-    public class AuthController : Controller
+    public class AuthController(IAuthService authService) : Controller
     {
-        private readonly IAuthService _authService;
-
-        public AuthController(IAuthService authService) => _authService = authService;
+        private readonly IAuthService _authService = authService;
 
         [HttpGet]
         public IActionResult Index() => View("index");
@@ -88,15 +86,11 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         public IActionResult ResetPassword(string token)
         {
             if (string.IsNullOrWhiteSpace(token))
-            {
                 return BadRequest("Invalid reset link.");
-            }
-
             var model = new ResetPasswordViewModel
             {
                 Token = token
             };
-
             return View(model);
         }
 
@@ -104,25 +98,13 @@ namespace EmailSchedulerApp.Areas.Auth.Controllers
         public IActionResult ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
-
-            bool result = _authService.ResetPassword(
-                model.Token,
-                model.NewPassword
-            );
-
+            bool result = _authService.ResetPassword(model.Token, model.NewPassword);
             if (!result)
             {
-                ModelState.AddModelError(
-                    "",
-                    "The reset link is invalid or has expired."
-                );
-
+                ModelState.AddModelError( "", "The reset link is invalid or has expired.");
                 return View(model);
             }
-
             return RedirectToAction("Login", "Auth");
         }
     }

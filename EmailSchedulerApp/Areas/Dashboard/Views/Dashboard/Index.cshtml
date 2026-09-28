@@ -1,10 +1,11 @@
 @using EmailSchedulerApp.Enums
 @model EmailSchedulerApp.ViewModels.Dashboard.DashboardViewModel
 @{
+    ViewBag.Title = "QueueIt | Dashboard";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 <!-- Custom CSS -->
-    <link rel="stylesheet" href="~/css/Dashboard/Dashboard.css" />
+<link rel="stylesheet" href="~/css/Dashboard/Dashboard.css" />
 
 <div class="dash-page">
     <!-- Page Header -->
@@ -82,7 +83,7 @@
     <div class="table-card">
         <div class="table-card-header">
             <h2 class="table-card-title">Recent Email Schedules</h2>
-            <a href="#" class="btn-view-all">
+            <a href="/Schedule/Schedule/ViewSchedules" class="btn-view-all">
                 View All <i class="bi bi-arrow-right"></i>
             </a>
         </div>
@@ -94,6 +95,7 @@
                         <th>Recipients</th>
                         <th>Scheduled Time</th>
                         <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,24 +103,31 @@
                     {
                         @foreach (EmailSchedulerApp.ViewModels.Dashboard.RecentEmailViewModel item in Model.RecentEmails)
                         {
-                            var statusClass = item.Status switch {
-                            EmailStatus.Sent    => "sent",
-                            EmailStatus.Pending => "pending",
-                            EmailStatus.Failed  => "failed",
-                            _                   => "pending"
-                        };
-                        var statusIcon = item.Status switch {
-                            EmailStatus.Sent    => "bi-check-circle-fill",
-                            EmailStatus.Pending => "bi-clock-fill",
-                            EmailStatus.Failed  => "bi-x-circle-fill",
-                            _                   => "bi-clock-fill"
-                        };
+                            var statusClass = item.Status switch
+                            {
+                                EmailStatus.Sent => "sent",
+                                EmailStatus.Pending => "pending",
+                                EmailStatus.Failed => "failed",
+                                _ => "pending"
+                            };
+                            var statusIcon = item.Status switch
+                            {
+                                EmailStatus.Sent => "bi-check-circle-fill",
+                                EmailStatus.Pending => "bi-clock-fill",
+                                EmailStatus.Failed => "bi-x-circle-fill",
+                                _ => "bi-clock-fill"
+                            };
                             <tr>
                                 <td class="subject-cell" title="@item.Subject">@item.Subject</td>
                                 <td>
-                                    <span class="recipients-badge">
-                                        <i class="bi bi-people-fill" style="font-size:11px;"></i>
-                                        @item.Recipients
+                                    <span title="Click to view recipients">
+                                        <span class="recipients-badge" role="button" tabindex="0" data-bs-toggle="popover"
+                                              data-bs-placement="top" data-bs-html="true" data-bs-title="Recipients"
+                                              data-bs-content="@Html.Raw(item.RecipientList)">
+
+                                            <i class="bi bi-people-fill" style="font-size:11px;"></i>
+                                            @item.Recipients
+                                        </span>
                                     </span>
                                 </td>
                                 <td class="time-cell">
@@ -130,6 +139,29 @@
                                         <span class="status-dot"></span>
                                         @item.Status
                                     </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <!-- View -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+
+                                        <!-- Edit -->
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+
+                                        <!-- Duplicate -->
+                                        <button type="button" class="btn btn-sm btn-outline-success" title="Duplicate">
+                                            <i class="bi bi-copy"></i>
+                                        </button>
+
+                                        <!-- Delete -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger" title="Delete">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         }
@@ -150,3 +182,4 @@
         </div>
     </div>
 </div>
+<script src="~/js/Dashboard/Dashboard.js"></script>

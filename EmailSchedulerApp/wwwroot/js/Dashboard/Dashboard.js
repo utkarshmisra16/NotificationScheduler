@@ -1,39 +1,14 @@
-// SUCCESS
-function showSuccess(message, title = "Success") {
-    Swal.fire({
-        icon: 'success',
-        title: title,
-        text: message,
-        confirmButtonColor: '#28a745'
+$(document).ready(function(){
+    $('#currentPage').text("Dashboard");
+    // Recipient popover
+    $('[data-bs-toggle="popover"]').each(function () {
+        new bootstrap.Popover(this);
     });
-}
 
-// ERROR
-function showError(message, title = "Error") {
-    Swal.fire({
-        icon: 'error',
-        title: title,
-        text: message,
-        confirmButtonColor: '#dc3545'
+    // Hover info tooltip
+    $('span[title="Click to view recipients"]').each(function () {
+        new bootstrap.Tooltip(this, {
+            trigger: 'hover'
+        });
     });
-}
-
-// WARNING
-function showWarning(message, title = "Warning") {
-    Swal.fire({
-        icon: 'warning',
-        title: title,
-        text: message,
-        confirmButtonColor: '#ffc107'
-    });
-}
-
-// INFO / NORMAL
-function showInfo(message, title = "Info") {
-    Swal.fire({
-        icon: 'info',
-        title: title,
-        text: message,
-        confirmButtonColor: '#0d6efd'
-    });
-}
+});
