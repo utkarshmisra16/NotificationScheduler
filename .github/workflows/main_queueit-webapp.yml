@@ -1,5 +1,7 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
+# Docs for the Azure Web Apps Deploy action:
+# https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure:
+# https://github.com/Azure/actions
 
 name: Build and deploy ASP.Net Core app to Azure Web App - QueueIt-webapp
 
@@ -10,12 +12,15 @@ on:
   workflow_dispatch:
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
+
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
+
       - uses: actions/checkout@v4
 
       - name: Set up .NET Core
@@ -23,36 +28,51 @@ jobs:
         with:
           dotnet-version: '10.x'
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      # Restore test project
+      - name: Restore
+        run: dotnet restore ./EmailSchedulerApp.Tests/EmailSchedulerApp.Tests.csproj
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      # Build test project and application
+      - name: Build
+        run: dotnet build ./EmailSchedulerApp.Tests/EmailSchedulerApp.Tests.csproj --no-restore --configuration Release
 
+      # Run unit tests
+      - name: Test
+        run: dotnet test ./EmailSchedulerApp.Tests/EmailSchedulerApp.Tests.csproj --no-build --configuration Release
+
+      # Publish application
+      - name: Publish
+        run: dotnet publish ./EmailSchedulerApp/EmailSchedulerApp.csproj --configuration Release --output ./publish
+
+      # Upload published application
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ./publish
+
 
   deploy:
     runs-on: ubuntu-latest
+
     needs: build
+
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DEE57DD4C20E4E128C7C9F725C00E27C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AC5CA9E20A284C97A5F9CA5FCDFA6D7E }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AC5CA9E20A284C97A5F9CA5FCDFA6D7E7 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2C82563125F64AA3AA48D1276D6A22EA }}
 
       - name: Deploy to Azure Web App
@@ -62,4 +82,3 @@ jobs:
           app-name: 'QueueIt-webapp'
           slot-name: 'Production'
           package: .
-          
