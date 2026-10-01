@@ -7,9 +7,10 @@ using System.Text.Json;
 
 namespace EmailSchedulerApp.Services.Implementations
 {
-    public class ScheduleService(IScheduleRepository scheduleRepository) : IScheduleService
+    public class ScheduleService(IScheduleRepository scheduleRepository, IScheduleDateService scheduleDateService) : IScheduleService
     {
         private readonly IScheduleRepository _scheduleRepository = scheduleRepository;
+        private readonly IScheduleDateService _scheduleDateService = scheduleDateService;
 
         public async Task<CreateScheduleResponseDto> SaveSchedule(CreateScheduleRequestDto request)
         {
@@ -30,8 +31,17 @@ namespace EmailSchedulerApp.Services.Implementations
                 Priority = (int)request.Priority,
                 IsActive = true,
                 CreatedOn = DateTime.UtcNow,
-                Recipients = JsonSerializer.Serialize(request.RecipientEmails)
+                Recipients = JsonSerializer.Serialize(request.RecipientEmails),
             };
+            schedule.NextRunAt = _scheduleDateService.CalculateFirstRun(schedule);
+            if (!schedule.NextRunAt.HasValue)
+            {
+                return new CreateScheduleResponseDto
+                {
+                    Success = false,
+                    Message = "Unable to calculate the first run time."
+                };
+            }
             int scheduleId = await _scheduleRepository.SaveSchedule(schedule);
             return new CreateScheduleResponseDto
             {

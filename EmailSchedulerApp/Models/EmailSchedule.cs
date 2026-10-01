@@ -24,5 +24,6 @@ namespace EmailSchedulerApp.Models
         public DateTime? UpdatedOn { get; set; }
         public string CreatedBy { get; set; } = string.Empty;
         public required string Recipients {get; set;}
+        public DateTime? NextRunAt { get; set; }
     }
 }

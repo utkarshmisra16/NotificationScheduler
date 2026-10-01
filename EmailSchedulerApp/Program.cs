@@ -9,6 +9,7 @@ using EmailSchedulerApp.Services.Implementations;
 using EmailSchedulerApp.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using EmailSchedulerApp.Models;
+using EmailSchedulerApp.Background;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +39,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
         options.SlidingExpiration = true;
     });
-    
+builder.Services.AddScoped<IScheduleDateService, ScheduleDateService>();
+builder.Services.AddHostedService<EmailSchedulerWorker>();    
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

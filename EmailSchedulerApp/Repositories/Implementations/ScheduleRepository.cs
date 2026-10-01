@@ -15,7 +15,7 @@ namespace EmailSchedulerApp.Repositories
         public async Task<int> SaveSchedule(Schedule schedule)
         {
             using var connection = _db.CreateConnection();
-            string query = "INSERT INTO Schedules ( TemplateId, StartDate, EndDate, IsActive, CreatedOn, Name, Channel, Description, StartTime, Timezone, Frequency, WeekDays, CronExpression, Tags, Priority, UpdatedOn, CreatedBy, Recipients ) VALUES ( @TemplateId, @StartDate, @EndDate, @IsActive, @CreatedOn, @Name, @Channel, @Description, @StartTime, @Timezone, @Frequency, @WeekDays, @CronExpression, @Tags, @Priority, @UpdatedOn, @CreatedBy, @Recipients ); SELECT CAST(SCOPE_IDENTITY() AS INT);";
+            string query = "INSERT INTO Schedules ( TemplateId, StartDate, EndDate, IsActive, CreatedOn, Name, Channel, Description, StartTime, Timezone, Frequency, WeekDays, CronExpression, Tags, Priority, UpdatedOn, CreatedBy, Recipients, NextRunAt) VALUES ( @TemplateId, @StartDate, @EndDate, @IsActive, @CreatedOn, @Name, @Channel, @Description, @StartTime, @Timezone, @Frequency, @WeekDays, @CronExpression, @Tags, @Priority, @UpdatedOn, @CreatedBy, @Recipients, @NextRunAt ); SELECT CAST(SCOPE_IDENTITY() AS INT);";
             return await connection.ExecuteScalarAsync<int>(query, schedule);
         }
 
