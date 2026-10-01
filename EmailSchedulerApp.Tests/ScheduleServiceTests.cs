@@ -3,6 +3,7 @@ using EmailSchedulerApp.DTOs.Schedule;
 using EmailSchedulerApp.Models;
 using EmailSchedulerApp.Repositories.Interfaces;
 using EmailSchedulerApp.Services.Implementation;
+using EmailSchedulerApp.Services.Interfaces;
 using Moq;
 
 namespace EmailSchedulerApp.Services.Implementations;
@@ -14,6 +15,7 @@ public class ScheduleServiceTests
     {
         // Arrange
         var repositoryMock = new Mock<IScheduleRepository>();
+        var scheduleDateServiceMock = new Mock<IScheduleDateService>();
 
         Schedule? savedSchedule = null;
 
@@ -25,7 +27,14 @@ public class ScheduleServiceTests
             })
             .ReturnsAsync(10);
 
-        var service = new ScheduleService(repositoryMock.Object);
+        scheduleDateServiceMock
+            .Setup(x => x.CalculateFirstRun(It.IsAny<Schedule>()))
+            .Returns(new DateTime(2026, 10, 1, 10, 0, 0));
+
+        var service = new ScheduleService(
+            repositoryMock.Object,
+            scheduleDateServiceMock.Object
+        );
 
         var request = new CreateScheduleRequestDto
         {
@@ -60,6 +69,11 @@ public class ScheduleServiceTests
         );
 
         Assert.True(savedSchedule.IsActive);
+
+        Assert.Equal(
+            new DateTime(2026, 10, 1, 10, 0, 0),
+            savedSchedule.NextRunAt
+        );
 
         Assert.Equal(10, result.ScheduleId);
         Assert.True(result.Success);
