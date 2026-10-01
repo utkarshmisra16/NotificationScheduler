@@ -77,7 +77,19 @@ namespace EmailSchedulerApp.Services.Implementations
         {
             return weekDays
                 .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                .Select(day => Enum.Parse<DayOfWeek>(day.Trim(), true)).ToHashSet();
+                .Select(day => day.Trim().ToUpperInvariant())
+                .Select(day => day switch
+                {
+                    "SUN" => DayOfWeek.Sunday,
+                    "MON" => DayOfWeek.Monday,
+                    "TUE" => DayOfWeek.Tuesday,
+                    "WED" => DayOfWeek.Wednesday,
+                    "THU" => DayOfWeek.Thursday,
+                    "FRI" => DayOfWeek.Friday,
+                    "SAT" => DayOfWeek.Saturday,
+                    _ => throw new ArgumentException($"Invalid weekday: {day}")
+                })
+                .ToHashSet();
         }
 
         private static DateTime CalculateMonthlyRun(DateTime currentRun)
