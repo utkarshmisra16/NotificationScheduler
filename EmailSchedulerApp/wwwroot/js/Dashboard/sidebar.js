@@ -19,9 +19,11 @@ $(document).on("click", "#sidebarToggleIcon", function () {
     $(".sidebar-toggle-icon").addClass("d-none");
     $(".sidebar-logo").removeClass("d-none");
     $("#sidebarToggleClose").removeClass("d-none");
+    $(".sidebar-link").css("width", "100%");
 }); 
 
 $(document).on("click", "#sidebarToggleClose", function(){
     $(".sidebar-wrapper").toggleClass("expanded");
     $(".sidebar-brand-sub, .sidebar-brand-text").removeClass("d-block");
+    $(".sidebar-link").css("width", "72%");
 });

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using EmailSchedulerApp.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
-namespace EmailSchedulerApp.Controllers
+namespace EmailSchedulerApp.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
     [Authorize]
