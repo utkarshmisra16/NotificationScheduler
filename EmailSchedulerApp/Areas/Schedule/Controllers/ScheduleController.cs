@@ -4,7 +4,7 @@ using EmailSchedulerApp.DTOs.Schedule;
 using EmailSchedulerApp.ViewModels.Schedule;
 using Microsoft.AspNetCore.Authorization;
 
-namespace EmailSchedulerApp.Controllers
+namespace EmailSchedulerApp.Areas.Schedule.Controllers
 {
     [Area("Schedule")]
     [Authorize]

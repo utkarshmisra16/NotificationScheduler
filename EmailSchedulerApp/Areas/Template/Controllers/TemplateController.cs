@@ -3,7 +3,7 @@ using EmailSchedulerApp.Services.Interfaces;
 using EmailSchedulerApp.DTOs.Template;
 using Microsoft.AspNetCore.Authorization;
 
-namespace EmailSchedulerApp.Controllers
+namespace EmailSchedulerApp.Areas.Template.Controllers
 {
     [Area("Template")]
     [Authorize]

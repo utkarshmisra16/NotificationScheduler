@@ -1,0 +1,102 @@
+@{
+    ViewBag.Title = "QueueIt | Profile";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<main class="container pt-2 pb-3">
+
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">My Profile</h2>
+        <p class="text-secondary mb-0">
+            View and manage your account information.
+        </p>
+    </div>
+
+    <div class="card profile-card shadow-sm mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex flex-column flex-sm-row align-items-center gap-3">
+                <div class="profile-avatar">
+                    <i class="bi bi-person"></i>
+                </div>
+
+                <div class="text-center text-sm-start">
+                    <h4 class="fw-bold mb-1">Your Name</h4>
+                    <p class="text-secondary mb-0">
+                        your.email@example.com
+                    </p>
+                    <span class="badge text-bg-success mt-2">Active</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card profile-card shadow-sm">
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0">Personal Information</h5>
+
+                <a href="/Profile/Profile/Edit" class="btn btn-dark">
+                    <i class="bi bi-pencil me-1"></i> Edit Profile
+                </a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="section-label mb-1">Full Name</div>
+                    <div class="fw-semibold">Your Name</div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="section-label mb-1">Email Address</div>
+                    <div class="fw-semibold">your.email@example.com</div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="section-label mb-1">Account Status</div>
+                    <div class="fw-semibold">Active</div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="section-label mb-1">Member Since</div>
+                    <div class="fw-semibold">—</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row g-3 mt-2">
+        <div class="col-md-6">
+            <a href="/Profile/Profile/ChangePassword"
+               class="card profile-card shadow-sm text-decoration-none text-dark h-100">
+                <div class="card-body p-4 d-flex align-items-center gap-3">
+                    <i class="bi bi-shield-lock fs-2"></i>
+                    <div>
+                        <h6 class="fw-bold mb-1">Change Password</h6>
+                        <p class="text-secondary mb-0 small">
+                            Update your account password.
+                        </p>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="/Profile/Profile/NotificationPreferences"
+               class="card profile-card shadow-sm text-decoration-none text-dark h-100">
+                <div class="card-body p-4 d-flex align-items-center gap-3">
+                    <i class="bi bi-bell fs-2"></i>
+                    <div>
+                        <h6 class="fw-bold mb-1">Notification Preferences</h6>
+                        <p class="text-secondary mb-0 small">
+                            Manage your notification settings.
+                        </p>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</main>
